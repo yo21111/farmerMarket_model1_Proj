@@ -55,7 +55,7 @@
 							<td><input id="pwInput" type="password" name="uPw"
 								placeholder="비밀번호를 입력해주세요"></td>
 							<td>
-								<button id="pwBtn" type="button">
+								<button class="pwBtn" type="button">
 									<i class="fa fa-eye-slash"></i>
 								</button>
 							</td>
@@ -65,17 +65,16 @@
 							<td>
 								<div>10자 이상 입력</div>
 								<div>영문/숫자/특수문자(공백제외) 만 허용하며, 2개 이상 조합</div>
-								<div>동일한 숫자 3개이상 연속 사용 불가</div>
 							</td>
 						</tr>
 						<!------------------- 비밀번호 끝 ------------------->
 						<!------------------- 비밀번호 확인 시작 ------------------->
 						<tr>
 							<td class="necessary">비밀번호확인</td>
-							<td><input id="pwChkInput" type="text"
+							<td><input id="pwChkInput" type="password"
 								placeholder="비밀번호를 한번 더 입력해주세요"></td>
 							<td>
-								<button id="pwChkBtn" type="button">
+								<button class="pwChkBtn" type="button">
 									<i class="fa fa-eye-slash"></i>
 								</button>
 							</td>
@@ -110,7 +109,7 @@
 							<td><input id="phoneInput" type="text" name="uPhone"
 								placeholder="숫자만 입력해주세요"></td>
 							<td>
-								<button id="phoneBtn" type="button">인증번호 받기</button>
+								<button id="phoneBtn" type="button">휴대폰 인증하기</button>
 							</td>
 						</tr>
 						<tr id="afterPhone">
@@ -125,19 +124,19 @@
 						<tr class="beforeAddr">
 							<td class="necessary">주소</td>
 							<td>
-								<button class="addrBtn" type="button">
+								<button class="addrBtn" type="button" onclick="findAddr()">
 									<i class="fa fa-fw fa-search"></i>주소 검색
 								</button>
 							</td>
-							<td></td>
+							<td>&nbsp;</td>
 						</tr>
 						<!-- 주소검색 버튼 클릭 후 -->
 						<tr class="afterAddr">
 							<td class="necessary">주소</td>
-							<td><input id="addrInput1" type="text" name="uAddr1">
-							</td>
+							<td><input id="addrInput1" type="text" name="uAddr1"
+								readonly></td>
 							<td>
-								<button class="addrBtn" type="button">
+								<button class="addrBtn" type="button" onclick="findAddr()">
 									<i class="fa fa-fw fa-search"></i> 재검색
 								</button>
 							</td>
@@ -158,10 +157,10 @@
 						<tr>
 							<td>성별</td>
 							<td><label for="genderMInput"> <input
-									id="genderMInput" type="radio" name="gender" value="1">
+									id="genderMInput" type="radio" name="gender" value="남자">
 									남자
 							</label> <label for="genderWInput"> <input id="genderWInput"
-									type="radio" name="gender" value="2"> 여자
+									type="radio" name="gender" value="여자"> 여자
 							</label> <label for="genderNInput"> <input id="genderNInput"
 									type="radio" name=gender value="0"> 선택안함
 							</label></td>
@@ -186,15 +185,26 @@
 						<!------------------- 추가입력 사항 시작 ------------------->
 						<tr>
 							<td>추가입력 사항</td>
-							<td><span class="chkBox"></span> <input class="genderInput"
-								type="radio"> <label for="genderInput">추천인 아이디</label> <span
-								class="chkBox"></span> <input class="genderInput" type="radio">
-								<label for="genderInput">참여 이벤트명</label></td>
+							<td><input class="genderInput" type="radio" name="etc">
+								<label for="genderInput">추천인 아이디</label> <input
+								class="genderInput" type="radio" name="etc"> <label
+								for="genderInput">참여 이벤트명</label> <input class="genderInput"
+								type="radio" name="etc" checked> <label
+								for="genderInput">없음</label></td>
 						</tr>
 						<!------------------- 추가입력 사항 끝 ------------------->
 
 					</tbody>
 				</table>
+				<div id="formRes">
+					<input id="idRes" type="hidden" value="false"> <input
+						id="pwRes" type="hidden" value="false"> <input
+						id="pwChkRes" type="hidden" value="false"> <input
+						id="nameRes" type="hidden" value="false"> <input
+						id="emailRes" type="hidden" value="false"> <input
+						id="phoneRes" type="hidden" value="false"> <input
+						id="addrRes" type="hidden" value="false">
+				</div>
 			</form>
 			<!-- form#memberFrm -->
 			<!---------------------- 회원가입 폼 끝 ------------------------>
@@ -204,13 +214,18 @@
 				<tbody>
 					<tr>
 						<td id="title" class="necessary">이용약관동의</td>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" id="chkAll"></td>
 						<td>
 							<p id="allAgree">전체 동의합니다</p>
 						</td>
 					</tr>
 					<tr>
-						<td>&nbsp;</td>
+						<td>
+							<button id="agreeBtn" type="button">약관보기 〉</button>
+							<div id="joinAgreement">
+								<jsp:include page="/member/joinAgreement.jsp" />
+							</div>
+						</td>
 						<td>&nbsp;</td>
 						<td>선택항목에 동의하지 않는 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.</td>
 					</tr>
@@ -246,7 +261,7 @@
 					</tr>
 				</tbody>
 			</table>
-			
+
 			<!---------------------- 이용약관동의 끝 ------------------------>
 		</main>
 		<div id="btnArea">
@@ -255,6 +270,10 @@
 		<jsp:include page="/ind/footerTmp.jsp" />
 	</div>
 	<!--div#wrap-->
+	<!---------------------------카카오 주소검색 API 시작  ---------------------------------------->
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!---------------------------카카오 주소검색 API 끝  ------------------------------------------>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="/script/script_member.js"></script>
