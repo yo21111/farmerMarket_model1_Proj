@@ -174,22 +174,15 @@ $(function() {
 		}
 	});
 
-	// 주소 유효성 검사
+	// 주소 tr 숨기기 보여주기
 	$("button.addrBtn").click(function() {
 		/*///////////////////////////////////////////////////////////////*/
-		/*/////////////////////주소검색 작성 위치//////////////////////////*/
+		/*//////////////주소검색 -> js파일 하단 참조 요망//////////////////*/
 		/*///////////////////////////////////////////////////////////////*/
 
 		$("tr.afterAddr").css("display", "table-row");
 		$("tr.beforeAddr").css("display", "none");
 
-		let addrInput = $("input#addrInput1").val();
-
-		if (addrInput != "") {
-			$("input#nameRes").val("true");
-		} else {
-			$("input#nameRes").val("false");
-		}
 	});
 
 	/* 이용약관동의 전체 선택 체크시 하위 체크박스 체크하기 */
@@ -222,6 +215,14 @@ $(function() {
 
 	//가입하기 버튼 클릭
 	$("#btnArea button#memberBtn").click(function() {
+		let addrInput = $("input#addrInput1").val();
+
+		if (addrInput != "") {
+			$("input#addrRes").val("true");
+		} else {
+			$("input#addrRes").val("false");
+		}
+
 		if ($("input#idRes").val() == "false") {
 			alert("아이디를 다시 입력해주세요.");
 			$("input#inInput").focus();
@@ -263,15 +264,19 @@ $(function() {
 			$("input#addrInput1").focus();
 			return;
 		}
-		
-		if($("input#chkAll").prop("checked") != true) {
+
+		let chk0 = $("table#agreeTbl tr.oneAgree input").eq(0).prop("checked");
+		let chk1 = $("table#agreeTbl tr.oneAgree input").eq(1).prop("checked");
+		let chk4 = $("table#agreeTbl tr.oneAgree input").eq(4).prop("checked");
+
+		if (!chk0 || !chk1 || !chk4) {
 			alert("이용약관동의에 체크해주세요.");
-			return;			
+			return;
 		}
 		
 		/*///////////////////////////////////////////////////////////////*/
 		/*//////////회원가입 버튼 action, submit 작성위치////////////////*/
-		/*///////////////////////////////////////////////////////////////*/		
+		/*///////////////////////////////////////////////////////////////*/
 	});
 
 	//---------------------------------------------------------------------------
@@ -296,21 +301,21 @@ $(function() {
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////kakao 주소검색 API 사용 시작///////////////////////////////*/
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
-function findAddr(){
+function findAddr() {
 	new daum.Postcode({
-        oncomplete: function(data) {
-        	
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-            var roadAddr = data.roadAddress; // 도로명 주소 변수
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('addrInput1').value = data.zonecode;
-            if(roadAddr !== ''){
-                document.getElementById("addrInput1").value = roadAddr;
-            } 
-        }
-    }).open();
+		oncomplete: function(data) {
+
+			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var roadAddr = data.roadAddress; // 도로명 주소 변수
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('addrInput1').value = data.zonecode;
+			if (roadAddr !== '') {
+				document.getElementById("addrInput1").value = roadAddr;
+			}
+		}
+	}).open();
 }
 /*/////////////////////////////////////////////////////////////////////////////////////////*/
 /*/////////////////////////////kakao 주소검색 API 사용 끝///////////////////////////////*/

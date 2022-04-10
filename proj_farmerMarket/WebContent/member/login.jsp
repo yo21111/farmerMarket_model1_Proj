@@ -58,7 +58,7 @@
 						</tr>
 						<tr>
 							<td>
-								<button id="memberBtn" type="button">회원가입</button>
+								<a href="/member/member.jsp"><button id="memberBtn" type="button">회원가입</button></a>
 							</td>
 						</tr>
 					</tbody>
