@@ -35,8 +35,8 @@
 						<tr>
 							<td class="necessary">아이디</td>
 							<td><input id="idInput" type="text" name="uId"
-								placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"> 
-								<input type="hidden" id="idChkTorF" value="0"></td>
+								placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"> <input
+								type="hidden" id="idChkTorF" value="0"></td>
 							<td>
 								<button id="idBtn" type="button">중복확인</button>
 							</td>
@@ -133,8 +133,7 @@
 						<!-- 주소검색 버튼 클릭 후 -->
 						<tr class="afterAddr">
 							<td class="necessary">주소</td>
-							<td><input id="addrInput1" type="text"
-								readonly></td>
+							<td><input id="addrInput1" type="text" readonly></td>
 							<td>
 								<button class="addrBtn" type="button" onclick="findAddr()">
 									<i class="fa fa-fw fa-search"></i> 재검색
@@ -144,9 +143,8 @@
 						<tr class="afterAddr">
 							<td></td>
 							<td><input id="addrInput2" type="text"
-								placeholder="나머지 주소를 입력해주세요">
-								<input type="hidden" id="addr" name="uAddr">	
-							</td>
+								placeholder="나머지 주소를 입력해주세요"> <input type="hidden"
+								id="addr" name="uAddr"></td>
 						</tr>
 						<tr class="afterAddr">
 							<td>&nbsp;</td>
@@ -175,30 +173,19 @@
 								<div id="birthArea">
 									<input class="birthInput" type="text" maxlength="4"
 										placeholder="YYYY"> <span>/</span> <input
-										class="birthInput" type="text" maxlength="2"
-										placeholder="MM"> <span>/</span> <input
-										class="birthInput" type="text" maxlength="2"
-										placeholder="DD">
-									<input type="hidden" id="birth" name="uBirth" />
+										class="birthInput" type="text" maxlength="2" placeholder="MM">
+									<span>/</span> <input class="birthInput" type="text"
+										maxlength="2" placeholder="DD"> <input type="hidden"
+										id="birth" name="uBirth" />
 								</div>
 							</td>
 
 						</tr>
 						<!------------------- 성별 끝 ------------------->
-						<!------------------- 추가입력 사항 시작 ------------------->
-						<tr>
-							<td>추가입력 사항</td>
-							<td><input class="genderInput" type="radio" name="etc">
-								<label for="genderInput">추천인 아이디</label> <input
-								class="genderInput" type="radio" name="etc"> <label
-								for="genderInput">참여 이벤트명</label> <input class="genderInput"
-								type="radio" name="etc" checked> <label
-								for="genderInput">없음</label></td>
-						</tr>
-						<!------------------- 추가입력 사항 끝 ------------------->
 
 					</tbody>
 				</table>
+				<!------------------- 유효성 검사 참고 hidden input 시작 ------------------->
 				<div id="formRes">
 					<input id="idRes" type="hidden" value="false"> <input
 						id="idChkRes" type="hidden" value="false"> <input
@@ -209,6 +196,7 @@
 						id="phoneRes" type="hidden" value="false"> <input
 						id="addrRes" type="hidden" value="false">
 				</div>
+				<!------------------- 유효성 검사 참고 hidden input 끝 --------------------->
 			</form>
 			<!-- form#memberFrm -->
 			<!---------------------- 회원가입 폼 끝 ------------------------>

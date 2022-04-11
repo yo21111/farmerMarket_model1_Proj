@@ -15,7 +15,9 @@
 <body>
 	<div id="wrap">
 		<jsp:include page="/ind/headerTmp.jsp" />
-
+		<main id="index">
+			<h1>메인페이지 입니다.</h1>
+		</main>
 		<jsp:include page="/ind/footerTmp.jsp" />
 	</div>
 	<!--div#wrap-->

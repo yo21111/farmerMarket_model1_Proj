@@ -330,7 +330,7 @@ div.dimmed::after {
 	height: 700px;
 	position: absolute;
 	overflow: scroll;
-	top: 140%;
+	top: 110%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	min-width: 300px;

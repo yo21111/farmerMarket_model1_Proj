@@ -100,11 +100,9 @@ div#header-bot {
 	height: 15px;
 	background-color: rgba(255, 255, 255, 0);
 	font-size: 17px;
-}
-
-#searchDiv button#searchBtn:hover {
 	cursor: pointer;
 }
+
 
 div#shortCut div#wishList {
 	font-size: 20px;
