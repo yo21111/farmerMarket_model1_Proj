@@ -80,7 +80,7 @@ public class MemberDao {
 		try {
 			conn = pool.getConnection();
 			sql = "insert into member (uId, uPw, uName, uEmail, uPhone, uAddr,"
-					+ "uGender, uBirth) values(?,?,?,?,?,?,?,?)";
+					+ "uGender, uBirth, joinTime) values(?,?,?,?,?,?,?,?,now())";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, bean.getuId());
