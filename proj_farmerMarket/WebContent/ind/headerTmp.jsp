@@ -83,8 +83,5 @@
 		<!--------------------- div#header-bot .dFLEX --------------------->
 	</div>
 	<!-- div#header -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/script/script_ind.js"></script>
 </body>
 </html>

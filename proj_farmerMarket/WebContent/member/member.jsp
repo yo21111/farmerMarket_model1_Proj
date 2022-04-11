@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,14 +28,15 @@
 			<!-- div#form-title -->
 
 			<!---------------------- 회원가입 폼 시작 ---------------------->
-			<form method="post" id="memberFrm">
+			<form method="post" id="memberFrm" action="/member/memberProc.jsp">
 				<table>
 					<tbody>
 						<!------------------- 아이디 시작 ------------------->
 						<tr>
 							<td class="necessary">아이디</td>
 							<td><input id="idInput" type="text" name="uId"
-								placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"></td>
+								placeholder="6자 이상의 영문 혹은 영문과 숫자를 조합"> 
+								<input type="hidden" id="idChkTorF" value="0"></td>
 							<td>
 								<button id="idBtn" type="button">중복확인</button>
 							</td>
@@ -99,7 +99,7 @@
 							<td><input id="emailInput" type="text" name="uEmail"
 								placeholder="예:farmermarket@fmket.com"></td>
 							<td>
-								<button id="emailBtn" type="button">중복확인</button>
+								<!-- <button id="emailBtn" type="button">중복확인</button> -->
 							</td>
 						</tr>
 						<!------------------- 이메일 끝 ------------------->
@@ -133,7 +133,7 @@
 						<!-- 주소검색 버튼 클릭 후 -->
 						<tr class="afterAddr">
 							<td class="necessary">주소</td>
-							<td><input id="addrInput1" type="text" name="uAddr1"
+							<td><input id="addrInput1" type="text"
 								readonly></td>
 							<td>
 								<button class="addrBtn" type="button" onclick="findAddr()">
@@ -143,8 +143,10 @@
 						</tr>
 						<tr class="afterAddr">
 							<td></td>
-							<td><input id="addrInput2" type="text" name="uAddr2"
-								placeholder="나머지 주소를 입력해주세요"></td>
+							<td><input id="addrInput2" type="text"
+								placeholder="나머지 주소를 입력해주세요">
+								<input type="hidden" id="addr" name="uAddr">	
+							</td>
 						</tr>
 						<tr class="afterAddr">
 							<td>&nbsp;</td>
@@ -157,12 +159,12 @@
 						<tr>
 							<td>성별</td>
 							<td><label for="genderMInput"> <input
-									id="genderMInput" type="radio" name="gender" value="남자">
+									id="genderMInput" type="radio" name="uGender" value="m">
 									남자
 							</label> <label for="genderWInput"> <input id="genderWInput"
-									type="radio" name="gender" value="여자"> 여자
+									type="radio" name="uGender" value="w"> 여자
 							</label> <label for="genderNInput"> <input id="genderNInput"
-									type="radio" name=gender value="0"> 선택안함
+									type="radio" name=uGender value="0"> 선택안함
 							</label></td>
 						</tr>
 						<!------------------- 성별 끝 ------------------->
@@ -171,12 +173,13 @@
 							<td>생년월일</td>
 							<td>
 								<div id="birthArea">
-									<input class="birthInput" type="text" name="year" maxlength="4"
+									<input class="birthInput" type="text" maxlength="4"
 										placeholder="YYYY"> <span>/</span> <input
-										class="birthInput" type="text" name="month" maxlength="2"
+										class="birthInput" type="text" maxlength="2"
 										placeholder="MM"> <span>/</span> <input
-										class="birthInput" type="text" name="day" maxlength="2"
+										class="birthInput" type="text" maxlength="2"
 										placeholder="DD">
+									<input type="hidden" id="birth" name="uBirth" />
 								</div>
 							</td>
 
@@ -198,6 +201,7 @@
 				</table>
 				<div id="formRes">
 					<input id="idRes" type="hidden" value="false"> <input
+						id="idChkRes" type="hidden" value="false"> <input
 						id="pwRes" type="hidden" value="false"> <input
 						id="pwChkRes" type="hidden" value="false"> <input
 						id="nameRes" type="hidden" value="false"> <input
