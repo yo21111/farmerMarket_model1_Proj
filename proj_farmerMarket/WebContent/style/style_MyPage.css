@@ -1,39 +1,158 @@
 @charset "UTF-8";
 @import url(/source/style_Reset.css);
 
-div#wrap {
-	width: 1900px;
+hr.sepLine {    /* Separate Line 경계선*/
 	border: none;
-	margin: 0px auto;
+	border-top: 2px solid #000;
+    margin: 12px 0;
 }
-
- /*헤더*/
-
- /*헤더*/
  
   /*메인*/
 main#main {
 	width: 1200px;
-	height: 1200px;
     padding: 10px;
+    padding-top: 40px;
     margin: 0px auto;
-    border: 1px solid #f80;
+    /*border: 1px solid #f80;*/
 }
 
-div#mypage {
-	width: 220px;
-	border: 1px solid #f08;
-}
 
-div#mainListArea {
+/*메뉴 시작*/
+
+  main#main>div#mainlnb{
+  width: 200px;
+ /* border: 1px solid #000; */
+  justify-content: center;
+
+  }
+main#main>div#mainlnb h2{
+  margin: 15px 0 30px 5px; 
+  text-align: left;
+  font-size: 28px;
+}  
+ main#main>div#mainlnb>nav#mainlnb_M{
+/*   border: 1px solid #000; */
+  width: 100%;
+ 
+ } 
+  
+main#main>div#mainlnb>nav#mainlnb_M>ul{
+	width: 100%;
+    border: 1px solid #ddd;
+    border-bottom:none;
+	border-radius: 2px;
+}  
+#main>#mainlnb>#mainlnb_M>ul>li{
+	font-size: 14px;
+	line-height: 40px;
+	border-bottom: 1px solid #ddd;
+	font-weight: bold;
+} 
+ #main>#mainlnb>#mainlnb_M>ul>li>a{
+   display: inline-block;
+   width: 100%;
+  }
+  #main #mainlnb_M>ul>li.main_MLi:first-child{
+  background-color:#eee;
+  }
+  #main #mainlnb_M>ul>li.main_MLi >a {
+  font-size: 14px;}
+  
+   #main #mainlnb_M>ul>li.main_MLi:first-child >a {
+	color: #6e2e99;
+	}
+  #main #mainlnb_M>ul>li.main_MLi:hover>a{
+  background-color:#eee;
+  color: #6e2e99;
+  }
+
+
+
+/*메뉴 끝*/
+
+div#contentsArea {
 	flex: 1px;
-	border: 1px solid #000;
+	/*border: 1px solid #000;*/
+	margin-left: 20px;
+}
+div#contentsArea > table#pageTbl 
+{
+	margin-top: 14px;
+	margin-bottom: 24px;
+	padding-bottom: 20px;
+	width: 100%;
+	/*border: 1px solid #000;*/
+}
+div#contentsArea > table#pageTbl th {
+	/*border: 1px solid #000;*/
+}
+div#contentsArea > table#pageTbl th.th1 {
+	width: 100px;
+	text-align: left;
+}
+div#contentsArea > table#pageTbl th.th2 {
+	text-align: left;
 }
 
+div#contentsArea > h2 {
+  margin: 20px 0 30px 5px; 
+  text-align: left;
+  font-size: 24px;
+}
+div#contentsArea > p {
+	color : #ddd;
+	font-size: 14px;
+}
+div#contentsArea >table#pageTbl>tbody>th> select#select {
+	font-size: 14px;
+	padding: 40px;
+	
+}
+
+#main div#contents p {
+	font-size: 14px;
+	color : #ccc;
+	margin: 20px;
+	text-align: center;
+	line-height: 20px;
+}
 
  /*메인*/
  
-  /*푸터*/
 
- /*푸터*/
- 
+ /*회원탈퇴*/
+ div#wrap>main#main>div.memQuitDiv {
+	text-align: center;
+	padding: 40px;
+}
+
+div#wrap>main#main>div.memQuitDiv>form#memQuitFrm {
+	
+	text-align: center;
+	padding: 20px;
+	border: 2px solid rgba(0, 0, 0, 0.1);
+	
+	display: inline-block;
+	
+}
+
+
+#main>.memQuitDiv>#memQuitFrm p {	
+	width: 350px;
+	font-size: 17px;
+	padding: 13px 16px;
+	margin-bottom: 7px;
+}
+
+#main>.memQuitDiv>#memQuitFrm button {	
+	width: 320px;
+	color: #fff;
+	font-size: 18px;
+	padding: 15px 20px;
+	border: none;
+	margin-top: 17px;
+	margin-bottom: 7px;
+	background-color: #4e87f0;
+	cursor: pointer;
+}
+  /*회원탈퇴*/
