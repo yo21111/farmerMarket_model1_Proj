@@ -114,10 +114,10 @@
 					<table id="addrTbl" >
 						<tbody>
 							<tr>
-								<td>선택</td>
-								<td>주소</td>
-								<td>받으실 분</td>
-								<td>삭제</td>
+								<td><strong>선택</strong></td>
+								<td><strong>주소</strong></td>
+								<td><strong>받으실 분</strong></td>
+								<td><strong>삭제</strong></td>
 							</tr>
 							<tr>
 								<td><i class="fa fa-check"></i></td>

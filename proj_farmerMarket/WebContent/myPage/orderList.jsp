@@ -55,7 +55,23 @@
 				<hr class = "sepLine">
 				<div id="contents">
 				
-				<p>주문 내역이 없습니다.</p>
+				<div id="orderListArea">
+						<table id="orderListTbl">
+							<tbody>
+								<tr>
+									<td><strong>이미지</strong></td>
+									<td><strong>상품명</strong></td>
+									<td><strong>가격</strong></td>
+								</tr>
+								<tr>
+									<td><div id="images">이미지</div></td>
+									<td>상품명</td>
+									<td>1,000</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				
 				
 				</div>
 

@@ -47,7 +47,23 @@
 				<hr class = "sepLine">
 				<div id="contents">
 				
-				<p>주문 내역이 없습니다.</p>
+								<div id="goodsCm">
+						<table id="goodsCmTbl">
+							<tbody>
+								<tr>
+									<td><strong>제목</strong></td>
+									<td><strong>작성일</strong></td>
+									<td><strong>답변상태</strong></td>
+								</tr>
+								<tr>
+									<td>상품 후기 입니다.</td>
+									<td>2022-04-12</td>
+									<td>답변 완료</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			
 				
 				</div>
 

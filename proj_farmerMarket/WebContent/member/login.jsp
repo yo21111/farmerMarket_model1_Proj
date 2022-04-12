@@ -44,9 +44,9 @@
 											for="secChk">보안접속</label>
 									</div>
 									<ul id="findAccount" class="dFlex">
-										<li class="findLi"><a href="#">아이디 찾기</a></li>
+										<li class="findLi"><a href="/member/find_member.jsp?find=id">아이디 찾기</a></li>
 										<li class="findLi">|</li>
-										<li class="findLi"><a href="#">비밀번호 찾기</a></li>
+										<li class="findLi"><a href="/member/find_member.jsp?find=pw">비밀번호 찾기</a></li>
 									</ul>
 								</div>
 							</td>

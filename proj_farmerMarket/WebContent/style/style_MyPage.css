@@ -138,6 +138,38 @@ div#contentsArea>div#subtitle p {
 
  /*메인*/
  
+ /*주문내역*/
+ div#orderListArea {
+	/*border: 1px solid #000;*/
+	margin-top: 10px;
+	
+}
+
+table#orderListTbl{
+	/*border: 1px solid #000;*/
+	margin: 0 auto;
+	font-size: 14px;
+	border-collapse: collapse;
+}
+table#orderListTbl tr:nth-child(1) {
+	border-bottom: 1px dotted #ccc;
+}
+
+table#orderListTbl td {
+    /*border: 1px solid #000;*/
+	text-align: center;
+}
+table#orderListTbl td:nth-child(1) {
+	width: 200px;
+}
+table#orderListTbl td:nth-child(2) {
+	width: 600px;
+}
+table#orderListTbl td:nth-child(3) {
+	width: 100px;
+}
+ 
+ 
 
  /*회원탈퇴*/
  div#wrap>main#main>div#contentsArea>div.memQuitDiv {
@@ -418,8 +450,8 @@ table#addrTbl td:nth-child(4) {
 }
 
 /*찜한 상품*/
-div#wishList {
-	border: 1px solid #000;
+div#wishListArea {
+	/*border: 1px solid #000;*/
 	margin-top: 10px;
 	
 }
@@ -436,7 +468,7 @@ table#wishListTbl tr:nth-child(1) {
 }
 
 table#wishListTbl td {
-border: 1px solid #000;
+    /*border: 1px solid #000;*/
 	text-align: center;
 }
 table#wishListTbl td:nth-child(1) {
@@ -455,9 +487,68 @@ table#wishListTbl td:nth-child(5){
 	width: 80px;
 }
 
-div#images {
-	width: 100%;
-	height: 200px;
-} 
 
+
+/*상품 문의*/
+
+div#goodsQnA {
+	/*border: 1px solid #000;*/
+	margin-top: 10px;
+}
+
+table#QnATbl{
+	/*border: 1px solid #000;*/
+	margin: 0 auto;
+	font-size: 14px;
+	border-collapse: collapse;
+}
+table#QnATbl tr:nth-child(1) {
+	border-bottom: 1px dotted #ccc;
+}
+
+table#QnATbl td {
+/*border: 1px solid #000;*/
+text-align: center;
+}
+table#QnATbl td:nth-child(1) {
+	width: 600px;
+}
+table#QnATbl td:nth-child(2) {
+	width: 200px;
+	text-align: center;
+}
+table#QnATbl td:nth-child(3) {
+	width: 200px;
+}
+
+/*상품후기*/
+div#goodsCm {
+	/*border: 1px solid #000;*/
+	margin-top: 10px;
+}
+
+table#goodsCmTbl{
+	/*border: 1px solid #000;*/
+	margin: 0 auto;
+	font-size: 14px;
+	border-collapse: collapse;
+}
+table#goodsCmTbl tr:nth-child(1) {
+	border-bottom: 1px dotted #ccc;
+}
+
+table#goodsCmTbl td {
+/*border: 1px solid #000;*/
+text-align: center;
+}
+table#goodsCmTbl td:nth-child(1) {
+	width: 600px;
+}
+table#goodsCmTbl td:nth-child(2) {
+	width: 200px;
+	text-align: center;
+}
+table#goodsCmTbl td:nth-child(3) {
+	width: 200px;
+}
 
