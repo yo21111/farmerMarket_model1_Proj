@@ -18,10 +18,6 @@
        
 		<!-- 헤더템플릿 시작 --> 
 		<%@ include file="/ind/headerTmp.jsp" %>
-		<header id="header"> <!-- 영역 구분용 임시 템플릿 -->
-					<img src="/images/logo.png" alt="farmer market logo" />
-					<hr>
-		</header>
 		<!-- 헤더템플릿 끝 -->
 		
 		<main id="main">
@@ -58,7 +54,7 @@
 									</td> 
 									<!-- 이미지 클릭시 상품상세 페이지 이동 -->
 									<td>
-										<a href="#">[농부목장] 국내산 토마토 1kg</a>
+										<a href="#">[도축대장] 호주산 소고기 600g</a>
 									</td>
 									<td>
 										<div class="cntBtn">
@@ -67,7 +63,7 @@
 											<button type="button">+</button>
 										</div>
 									</td>
-									<td>10,160원</td>
+									<td>25,590원</td>
 								</tr>
 							</tbody>
 						</table>
@@ -76,11 +72,11 @@
 								<tr>
 									<td><input type="checkbox"></td>
 									<td>
-										<a href="#"><img src="/images/fruit.jpg" alt="과일"></a>
+										<a href="#"><img src="/images/berry.jpg" alt="과일"></a>
 									</td> 
 									<!-- 이미지 클릭시 상품상세 페이지 이동 -->
 									<td>
-										<a href="#">[농부목장] 국내산 토마토 1kg</a>
+										<a href="#">[농부목장] 수입산 크랜베리 300g</a>
 									</td>
 									<td>
 										<div class="cntBtn">
@@ -89,7 +85,7 @@
 											<button type="button">+</button>
 										</div>
 									</td>
-									<td>10,160원</td>
+									<td>6,500원</td>
 								</tr>
 							</tbody>
 						</table>
@@ -178,9 +174,6 @@
 		<!-- main#main -->
        
        <!-- 푸터템플릿 시작 -->
-       <footer id="footer">
-       		푸터 템플릿 삽입 예정
-       </footer>
        <%@ include file="/ind/footerTmp.jsp" %>
         <!-- 푸터템플릿 끝 -->
         

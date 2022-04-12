@@ -1,22 +1,15 @@
 @charset "UTF-8";
 @import url(/source/style_Reset.css);
 
-
-/* 영역 구분용 헤더 템플릿으로 대체 예정 */
-header#header {
-	text-align: center;
-}
-
-header#header img {
-	width: 200px;
-}
-/* 영역 구분용 헤더 템플릿으로 대체 예정 */
-
 /*/////////////////////////////////////////////////////////////
 //////////////////////상품페이지 시작///////////////////////////
 ///////////////////////////////////////////////////////////*/
 
 /* div#goodsList 시작 */
+
+main#mian {
+	text-align: center;
+}
 
 h1#todayGoods {
 	margin: 40px;
@@ -25,67 +18,48 @@ h1#todayGoods {
 }
 
 
-
-
-
-
-/* LNB 템플릿 삽입후 지울예정*/
-div#goodsList>nav#mainLNB li {
-	width: 200px;
-	border: 1px solid #000;
+div#goodsList{
+	/* border: 1px solid #000; */
+	justify-content: space-around;
 }
-/* LNB 템플릿 삽입후 지울예정*/
 
-
-
-
-div#goodsList>div#goodsList_Contents {
-	flex: 1;
-}
 
 /* 상품 목록 테이블 시작 */
-#goodsList>#goodsList_Contents>table {
-/* 	border: 1px solid #000; */
+#goodsList>table {
+	/* border: 1px solid #000; */
 	border-collapse: collapse;
 	margin: 10px;
 }
 
-#goodsList>#goodsList_Contents>table:first-child {
-	margin-left: 25px;
-}
-#goodsList>#goodsList_Contents>table:nth-child(3) {
-	margin-right: 0;
-}
-
-#goodsList>#goodsList_Contents>table td {
-	width: 300px;
+#goodsList>table td {
+	width: 350px;
 	/* border: 1px solid #000; */
 	text-align: center;
 }
 
-#goodsList>#goodsList_Contents>table td img {
-	width: 280px;
+#goodsList>table td img {
+	width: 330px;
 	height: 435px;
 }
 
 /* 이미지 마우스 오버효과 적용 시작 */
-#goodsList>#goodsList_Contents>table td>a {
+#goodsList>table td>a {
 	display: block;
 	overflow: hidden;
 }
 
-#goodsList>#goodsList_Contents>table img {
+#goodsList>table img {
 	transition: all 0.8s;
 }
 
-#goodsList>#goodsList_Contents>table img:hover {
+#goodsList>table img:hover {
 	transform: scale(1.04);
 	/* 마우스를 위치할 시 확대 되는 느낌 구현 */
 }
 /* 이미지 마우스 오버효과 적용 끝 */
 
 /* 상품 제목 영역 시작 */
-#goodsList>#goodsList_Contents>table td.goodsTitle {
+#goodsList>table td.goodsTitle {
 	font-size: 20px;
 	font-weight: bold;
 	text-align: left;
@@ -95,7 +69,7 @@ div#goodsList>div#goodsList_Contents {
 }
 
 /* 상품 가격 영역 시작 */
-#goodsList>#goodsList_Contents>table td.goodsPrice {
+#goodsList>table td.goodsPrice {
 	font-size: 18px;
 	font-weight: bold;
 	text-align: left;
@@ -106,22 +80,6 @@ div#goodsList>div#goodsList_Contents {
 
 
 /* div#goodsList 끝 */
-
-
-
-
-
-
-
-/* 푸터템플릿 삽입후 지울예정 */
-footer#footer {
-	margin-top: 30px;
-	text-align: center;
-	height: 100px;
-	font-size: 50px;
-}
-/* 푸터템플릿 삽입후 지울예정 */
-
 
 
 

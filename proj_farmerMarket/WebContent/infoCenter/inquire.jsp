@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/style/style_Common.css">
-    <link rel="stylesheet" href="/style/style_Template.css">
     <script src="/source/jquery-3.6.0.min.js"></script>
     <script src="/script/script.js"></script>
 </head>
@@ -61,12 +60,12 @@
         
         <h2>고객센터</h2>
         <ul>
-        	<li class="main_MLi"><a href="/infoCenter/notice.jsp">공지사항</a></li>
-        	<li class="main_MLi"><a href="/infoCenter/qna.jsp">	Q&A게시판</a></li>
-        	<li class="main_MLi"><a href="/infoCenter/faq.jsp">FAQ게시판</a></li>
-        	<li class="main_MLi"><a href="/infoCenter/inquire.jsp">1:1문의</a></li>
+        	<li id="notice_lnb"class="main_MLi"><a href="/infoCenter/notice.jsp">공지사항</a></li>
+        	<li id="Q&A_lnb"class="main_MLi"><a href="/infoCenter/qna.jsp">	Q&A게시판</a></li>
+        	<li id="FAQ_lnb"class="main_MLi"><a href="/infoCenter/faq.jsp">FAQ게시판</a></li>
+        	<li id="inquire_lnb"class="main_MLi selected"><a href="/infoCenter/inquire.jsp">1:1문의</a></li>
         </ul>
-        
+   
         </nav>
       
       </div>
@@ -83,7 +82,9 @@
           			<td>상품선택</td>
           			<td><select class="selectinquire">
           			<option >주문한 상품 없음</option>
-          			
+          			<option >미국산 소고기200g</option>
+          			<option >국산 이천쌀 맛味 10kg</option>
+          			<option >노르웨이산 연어150g</option>
           			</select>
           			</td>
                </tr>

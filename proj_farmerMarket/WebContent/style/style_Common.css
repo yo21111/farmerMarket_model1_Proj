@@ -33,7 +33,8 @@ div#mainSlide .prev, div#mainSlide .next {
 	top: 50%;
 	width: 63px;
 	margin-top: -22px;
-	margin-left: 10px; padding : 15px 17px 15px 15px;
+	margin-left: 10px;
+	padding: 15px 17px 15px 15px;
 	color: #fff;
 	background-color: rgba(212, 212, 212, 0.7);
 	border-radius: 50%;
@@ -124,6 +125,14 @@ div#headMenu li {
 	margin: 15px;
 }
 
+#wrap nav#headLNB>ul>li>a {
+	/*   border: 1px solid #f80; */
+	background-color: #000;
+}
+
+/*///////////////////////////////////////////////////////////*/
+/*///////////////////// main#main 시작 ////////////////////*/
+/*///////////////////////////////////////////////////////////*/
 main#main>div#mainlnb {
 	width: 200px;
 	/*  border: 1px solid #000; */
@@ -143,7 +152,6 @@ main#main>div#mainlnb>nav#mainlnb_M {
 main#main>div#mainlnb>nav#mainlnb_M>ul {
 	width: 100%;
 	border: 3px solid #ccc;
-	border-bottom: none;
 	border-radius: 2px;
 }
 
@@ -154,16 +162,20 @@ main#main>div#mainlnb>nav#mainlnb_M>ul {
 	font-weight: bold;
 }
 
+#main>#mainlnb>#mainlnb_M>ul>li:last-child {
+	border-bottom: none;
+}
+
 #main>#mainlnb>#mainlnb_M>ul>li>a {
 	display: inline-block;
 	width: 100%;
 }
 
-#main #mainlnb_M>ul>li.main_MLi:first-child {
+#main #mainlnb_M>ul>li.main_MLi:hover>a {
 	background-color: #ddd;
 }
 
-#main #mainlnb_M>ul>li.main_MLi:hover>a {
+#main #mainlnb_M>ul>li.main_MLi.selected {
 	background-color: #ddd;
 }
 
@@ -229,10 +241,85 @@ hr.divisionline {
 	display: inline-block;
 	margin-left: 840px;
 	font-size: 20px;
+	padding: 6px;
 	border: none;
 	border: 1px solid #bbb;
 	border-radius: 4px;
 	cursor: pointer;
+}
+
+#main #contents table#FAQTbl td {
+	width: 10%;
+	line-height: 40px;
+}
+
+.False {
+	display: none;
+}
+
+.cheked {
+	display: none;
+}
+
+#main>#contents>table#FAQTbl span {
+	position: relative;
+	left: 40px;
+}
+
+#main>#contents>table#FAQTbl input#dropBtn {
+	border: none;
+	font-size: 24px;
+	padding: 5px;
+	background-color: #fff;
+	color: #beb3ee;
+	width: 80px;
+	/*     border: 1px solid #eee; */
+	cursor: pointer;
+	position: relative;
+	left: 235px;
+}
+
+#main>#contents>table#BBSwrite td:first-child {
+	border-collapse: collapse;
+	width: 250px;
+	line-height: 40px;
+	font-size: 21px;
+	background-color: #f8f8f8;
+}
+
+#main>#contents>table#BBSwrite td>input[type=text] {
+	width: 100%;
+	height: 40px;
+	border: none;
+	font-size: 20px;
+	padding: 5px;
+}
+
+#main>#contents>table#BBSwrite td#mainwrite {
+	line-height: 120px;
+}
+
+#main>#contents>table#BBSwrite td>textArea {
+	width: 100%;
+	height: 150px;
+	padding: 5px;
+	border: none;
+	font-size: 18px;
+}
+
+#main>#contents>table#BBSwrite td#file>input {
+	width: 250px;
+	font-size: 17px;
+}
+
+#main>#contents>div#btnArea {
+	padding-top: 10px;
+	text-align: right;
+}
+
+#main>#contents>div#btnArea>button {
+	font-size: 18px;
+	padding: 4px;
 }
 
 #main>#contents>#searchArea input, select, button {
@@ -278,4 +365,15 @@ hr.divisionline {
 	border: 1px solid #ddd;
 	background-color: #eee;
 	border-radius: 5px;
+}
+
+button#searchBtn {
+	position: absolute;
+	transform: translate(-25px, 3px);
+	border: none;
+	width: 15px;
+	height: 15px;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 17px;
+	cursor: pointer;
 }
