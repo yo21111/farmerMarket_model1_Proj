@@ -8,15 +8,18 @@
  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/style/style_Common.css">
+    <link rel="stylesheet" href="/style/style_infoCenter.css">
     <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script.js"></script>
+    <script src="/script/script_infoCenter.js"></script>
 </head>
 <body>
 
 
 
  <div id="wrap">
+ <jsp:include page="/ind/headerTmp.jsp" />
+
+
  
  <header id="headerTmp">
       
@@ -80,7 +83,7 @@
           	<tbody>
           		<tr>
           			<td>상품선택</td>
-          			<td><select class="selectinquire">
+          			<td><select id="selectinquire_g"> <!--g=>goods -->
           			<option >주문한 상품 없음</option>
           			<option >미국산 소고기200g</option>
           			<option >국산 이천쌀 맛味 10kg</option>
@@ -107,11 +110,11 @@
           		</tr> 		
           		<tr>
           			<td>문의내용</td>
-          			<td><textarea cols="40" rows="10"></textarea></td>
+          			<td id="inquireText"><textarea></textarea></td>
           		</tr>
           		<tr>
           			<td>파일 첨부</td>
-          			<td><input type="file" /></td>
+          			<td><input type="file"></td>
           		</tr>
           		<tr>
  
@@ -134,7 +137,7 @@
       
       </footer>
    
- 
+    <jsp:include page="/ind/footerTmp.jsp" />
  </div>
 </body>
 </html>

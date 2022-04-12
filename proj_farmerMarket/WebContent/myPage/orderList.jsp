@@ -17,7 +17,6 @@
 	<div id="wrap">
 		<!-- 마이페이지를 누르면 제일 먼저 orderList 화면이 나와야 함 -->
 		<jsp:include page="/ind/headerTmp.jsp" />
-		<%@ include file="/ind/mainLnbTmp.jsp" %>
 
 		<main id="main" class="dFlex">
 
@@ -25,7 +24,7 @@
 				<nav id="mainlnb_M">
 					<h2>마이 마켓</h2>
 					<ul>
-						<li class="main_MLi"><a href="#">주문 내역</a></li>
+						<li class="main_MLi checked" ><a href="#">주문 내역</a></li>
 						<li class="main_MLi"><a href="/myPage/wishList.jsp">찜한 상품</a></li>
 						<li class="main_MLi"><a href="/myPage/addrUpdate.jsp">배송지
 								관리</a></li>
@@ -40,20 +39,19 @@
 				</nav>
 			</div>
 			<div id="contentsArea">
-			<table id="pageTbl">
-				<tbody>
-					<th class="th1"><h2>주문 내역</h2></th>
-					<th class="th2"><p>지난 3년간의 주문 내역 조회가 가능합니다.</p></th>
-					<th>
-					<select id="select">
-					<option>전체 기간</option>
-					<option>2022년</option>
-					<option>2021년</option>
-					<option>2020년</option>
-				</select>
-				</th>
-				</tbody>
-			</table>
+			
+			<div id="title_container" class="dFlex">
+				<div id="title"><h2>주문 내역</h2></div>
+				<div id="subtitle"><p>*지난 3년간의 주문 내역 조회가 가능합니다.</p></div>
+				<div id="select"><select name="" id="">
+						<option value="">전체 기간</option>
+						<option value="">2022년</option>
+						<option value="">2021년</option>
+						<option value="">2020년</option>
+					</select></div>
+			</div>
+			
+		
 				<hr class = "sepLine">
 				<div id="contents">
 				

@@ -8,9 +8,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-      <link rel="stylesheet" href="/style/style_Common.css">
+      <link rel="stylesheet" href="/style/style_infoCenter.css">
     <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script.js"></script>
+    <script src="/script/script_infoCenter.js"></script>
 </head>
 <body>
   <div id="wrap">

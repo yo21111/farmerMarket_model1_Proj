@@ -10,6 +10,8 @@
 <title>FarmerMarket</title>
 <!-- favicon 설정 -->
 <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/style/style_Common.css">
 </head>
 <body>
@@ -26,19 +28,22 @@
 					<!-- Full-width images with number and caption text -->
 					<div class="mySlides fade">
 						<div class="numbertext">1 / 3</div>
-						<a href="#"><img src="/images/mainSlide/mainSlide_img1.png" style="width: 100%"></a>
+						<a href="#"><img src="/images/mainSlide/mainSlide_img1.png"
+							style="width: 100%"></a>
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade">
 						<div class="numbertext">2 / 3</div>
-						<a href="#"><img src="/images/mainSlide/mainSlide_img2.png" style="width: 100%"></a>
+						<a href="#"><img src="/images/mainSlide/mainSlide_img2.png"
+							style="width: 100%"></a>
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade">
 						<div class="numbertext">3 / 3</div>
-						<a href="#"><img src="/images/mainSlide/mainSlide_img3.png" style="width: 100%"></a>
+						<a href="#"><img src="/images/mainSlide/mainSlide_img3.png"
+							style="width: 100%"></a>
 						<div class="text"></div>
 					</div>
 
@@ -61,7 +66,8 @@
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 		</main>
 
-		<jsp:include page="/ind/footerTmp.jsp" />
+		 <jsp:include
+				page="/ind/footerTmp.jsp" />
 	</div>
 	<!--div#wrap-->
 	<script
