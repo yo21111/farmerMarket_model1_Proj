@@ -113,22 +113,31 @@ main#index div.mainList div.goods_title {
 
 main#index div.mainList div.goods_container {
 	align-items: center;
-	justify-content:center;
+	justify-content: center;
 	/* overflow: hidden; */
 }
 
 main#index div.mainList div.goods_container div.goods {
-	position: relative; 
-	width : 330px;
+	position: relative;
+	width: 330px;
 	margin: 0 30px;
 	width: 330px;
 }
 
-div.mainList div.goods_container div.goods div.goodsImg, div.goodsImg img
-	{
+div.mainList div.goods_container div.goods div.goodsImg, div.goodsImg {
 	overflow: hidden;
 	width: 330px;
 	height: 400px;
+}
+
+div.mainList div.goods_container div.goods div.goodsImg, div.goodsImg img
+	{
+	cursor: pointer;
+	transition: transform .5s; /* Animation */
+}
+
+div.goodsImg img:hover {
+	transform: scale(1.2);
 }
 
 main#index div.mainList div.goods div.goodsBtn {
@@ -137,12 +146,18 @@ main#index div.mainList div.goods div.goodsBtn {
 	bottom: 100px;
 }
 
-div.goods div.goodsBtn a {
+div.goods div.goodsBtn {
 	width: 60px;
 	height: 60px;
+	cursor: pointer;
+	transition: .4s;
 }
 
-main#index div.mainList div.goods div.goodsBtn a i {
+div.goods div.goodsBtn:hover {
+	transform: scale(1.2);
+}
+
+main#index div.mainList div.goods div.goodsBtn i {
 	width: 60px;
 	height: 60px;
 	line-height: 60px;
@@ -183,7 +198,6 @@ div.mainList div.goods div.beforePrice:after {
 
 /* ------------------------------- Main 상품 리스트 끝 ------------------------------ */
 /* ---------------------------------------------------------------------------------- */
-
 
 /* --------------------------------------------------------------------------- */
 /* ------------------------------- index.jsp 끝 ------------------------------ */
