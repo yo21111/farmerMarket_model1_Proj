@@ -68,6 +68,327 @@
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			<!-- ///////////////////////////////////////////메인 상품리스트 시작////////////////////////////////////////////////// -->
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+			<div class="mainList">
+				<div class="goods_title">
+					<a href="#">육류 : 이 달의 추천목록</a>
+				</div>
+				<div class="goods_container dFlex">
+
+					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+					<div class="goods">
+						<div class="hidden">
+							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
+						</div>
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+
+
+
+					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+
+				</div>
+				<!-- div#goods_container -->
+			</div>
+			<!-- div#mainList -->
+
+
+			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
+			<div class="mainList">
+				<div class="goods_title">
+					<a href="#">해산물 : 이 달의 추천목록</a>
+				</div>
+				<div class="goods_container dFlex">
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+
+				</div>
+				<!-- div#goods_container -->
+			</div>
+			<!-- div#mainList -->
+
+
+			<div class="mainList">
+				<div class="goods_title">
+					<a href="#">과일 : 이 달의 추천목록</a>
+				</div>
+				<div class="goods_container dFlex">
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+
+				</div>
+				<!-- div#goods_container -->
+			</div>
+			<!-- div#mainList -->
+
+
+			<div class="mainList">
+				<div class="goods_title">
+					<a href="#">채소 : 이 달의 추천목록</a>
+				</div>
+				<div class="goods_container dFlex">
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+
+					<div class="goods">
+						<div class="goodsImg">
+							<a href="#"> <img src="/images/beef1_main.png" alt="상품이미지">
+							</a>
+						</div>
+
+						<div class="goodsBtn">
+							<!-- a태그 href를 장바구니 담기 Proc.jsp로 변경 -->
+							<a href="/goods/goods_basket.jsp"> <i
+								class="fa fa-fw fa-shopping-cart"></i>
+							</a>
+						</div>
+
+						<div class="goodsPrice">
+							<span class="salePer">10%</span> <span class="price">10,000</span>
+						</div>
+						<div class="beforePrice">9,000</div>
+					</div>
+					<!-- div#goods -->
+				</div>
+				<!-- div#goods_container -->
+			</div>
+			<!-- div#mainList -->
+			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
+			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
 
 
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

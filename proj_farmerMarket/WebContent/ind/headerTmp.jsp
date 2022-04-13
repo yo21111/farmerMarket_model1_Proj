@@ -114,6 +114,6 @@ String uId_session = (String) session.getAttribute("uId_Session");
 	<!-- div#header -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="/script/script_member.js"></script>
+	<script src="/script/script_ind.js"></script>
 </body>
 </html>

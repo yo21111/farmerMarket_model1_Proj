@@ -97,6 +97,94 @@ div#mainSlide .active, div#mainSlide .dot:hover {
 	background-color: #717171;
 }
 
+/* ---------------------------------------------------------------------------------- */
+/* ------------------------------- Main 상품 리스트 시작 ---------------------------- */
+main#index div.mainList {
+	width: 1200px;
+	margin: 150px auto;
+}
+
+main#index div.mainList div.goods_title {
+	font-weight: bold;
+	text-align: center;
+	font-size: 30px;
+	margin: 40px 0;
+}
+
+main#index div.mainList div.goods_container {
+	align-items: center;
+	justify-content:center;
+	/* overflow: hidden; */
+}
+
+main#index div.mainList div.goods_container div.goods {
+	position: relative; 
+	width : 330px;
+	margin: 0 30px;
+	width: 330px;
+}
+
+div.mainList div.goods_container div.goods div.goodsImg, div.goodsImg img
+	{
+	overflow: hidden;
+	width: 330px;
+	height: 400px;
+}
+
+main#index div.mainList div.goods div.goodsBtn {
+	position: absolute;
+	right: 10px;
+	bottom: 100px;
+}
+
+div.goods div.goodsBtn a {
+	width: 60px;
+	height: 60px;
+}
+
+main#index div.mainList div.goods div.goodsBtn a i {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 50%;
+	background-color: #725973;
+	font-size: 35px;
+	font-weight: bold;
+	color: #fff;
+}
+
+div.mainList div.goods div.goodsPrice {
+	font-size: 30px;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+div.mainList div.goods div.goodsPrice span.salePer {
+	font-size: 25px;
+	color: #fa622f;
+	padding-left: 5px;
+}
+
+div.mainList div.goods div.goodsPrice span.price:after {
+	content: "원";
+}
+
+div.mainList div.goods div.beforePrice {
+	text-decoration: line-through;
+	color: #aaa;
+	font-weight: bold;
+	font-size: 25px;
+	padding-left: 5px;
+}
+
+div.mainList div.goods div.beforePrice:after {
+	content: "원";
+}
+
+/* ------------------------------- Main 상품 리스트 끝 ------------------------------ */
+/* ---------------------------------------------------------------------------------- */
+
+
 /* --------------------------------------------------------------------------- */
 /* ------------------------------- index.jsp 끝 ------------------------------ */
 /* --------------------------------------------------------------------------- */

@@ -400,7 +400,7 @@ $(function() {
 	//---------------------------------------------------------------------------
 	//---------------------------idCheck.jsp 시작-------------------------------
 	//---------------------------------------------------------------------------
-	$("div#idCheck button").ready(function() {
+	$("idChkTorF.document").ready(function() {
 		let idChk = $("div#idCheck input#idChk").val();
 		$("input#idChkTorF", opener.document).val(idChk);
 
