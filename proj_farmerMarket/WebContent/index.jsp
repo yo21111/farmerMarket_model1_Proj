@@ -69,17 +69,50 @@
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			<!-- ///////////////////////////////////////////메인 상품리스트 시작////////////////////////////////////////////////// -->
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+			<%
+			//M : 육류 , S : 해산물 , V : 채소 , F : 과일
+			String[] category = { "M", "S", "V", "F" };
+			String[] title = { "육류", "해산물", "채소", "과일" };
+			String[] subTitle = { " : 이 달의 핫딜", " : 이 달의 추천 품목" };
+			String sql = "";
+				
+				/* 		
+	
+				for (int i = 0; i < category.length; i++) {
+				String target = category[i];
+
+				for (int j = 0; j < 2; j++) {
+					if (j == 0) {
+					//sql = select * from goods where goodsCode like '" + target + "%' order by 조건 limit 3'
+					//   -> 조건 1. order by goodsPrice
+
+					} else {
+					//sql = select * from goods where goodsCode like '" + target + "%' order by 조건 limit 3'
+					//   -> 조건 2. order by goodsPrice DESC
+
+					} 
+					
+					// sql로 가져오는 필수 값 : 제품코드, 제품이미지, 제품이름, 제품소제목, 제품할인율
+						String goodsCode = "";
+						String goodsImg = "";
+						String goodsName = "";
+						String goodsCatch = "";
+						int goodsPrice = 0;
+						int eventRate = 0;
+						
+						// 할인 금액
+						int salePrice = goodsPrice - (goodsPrice * eventRate / 100);
+					*/
+			%>
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+
 			<div class="mainList">
 				<div class="goods_title">
 					<a href="#">육류 : 이 달의 추천목록</a>
 				</div>
 				<div class="goods_container dFlex">
-					<%
-
-					%>
-					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
 					<div class="goods">
 
 						<div class="goodsImg">
@@ -93,17 +126,24 @@
 						<div class="hidden">
 							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력1 !!!!!!">
 						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+						<div class="goodsName">
+							[국거리용 한우] 
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="goodsCatch">정말 맛있는 국거리용 소고기</div>
+						<div class="goodsPrice">
+							<%//if (eventRate != 0) {  %>
+							<span class="salePer">10%</span> 
+							<%//} %>
+							<span class="price">10000</span>
+						</div>
+							<%//if (eventRate != 0) {  %>
+						<div class="beforePrice">9000</div>
+							<%//} %>
 					</div>
 					<!-- div#goods -->
 					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
 					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
 					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
-
 
 
 					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
@@ -125,9 +165,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -145,9 +185,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
@@ -155,12 +195,14 @@
 					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
 					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
 					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-
 				</div>
 				<!-- div#goods_container -->
 			</div>
 			<!-- div#mainList -->
-
+				<%
+				/* } //2번 반복문
+			} // category for문 */
+			%>
 
 			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
 			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
@@ -187,9 +229,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -208,9 +250,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -228,9 +270,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -261,9 +303,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -282,9 +324,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -302,9 +344,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -335,9 +377,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -356,9 +398,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 
@@ -376,9 +418,9 @@
 						</div>
 
 						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10,000</span>
+							<span class="salePer">10%</span> <span class="price">10000</span>
 						</div>
-						<div class="beforePrice">9,000</div>
+						<div class="beforePrice">9000</div>
 					</div>
 					<!-- div#goods -->
 				</div>

@@ -57,8 +57,23 @@ $(function() {
 		let goodsCode = $(this).next().next().children().val();
 		alert(goodsCode);
 
-		location.href = "/mainPage/toGoodsDetailProc.jsp?goodsCode=" + goodsCode; 
+		location.href = "/mainPage/toGoodsDetailProc.jsp?goodsCode=" + goodsCode;
 	});
+
+	// 천단위 기호 붙여주기 - span.price
+	$("div.goodsPrice span.price").each(function(i, v) {
+		let price = parseInt($(this).text());
+		price = price.toLocaleString();
+		$(this).text(price);
+	});
+
+	// 천단위 기호 붙여주기 - span.beforePrice
+	$("div.beforePrice").each(function(i, v) {
+		let price = parseInt($(this).text());
+		price = price.toLocaleString();
+		$(this).text(price);
+	});
+	
 });
 
 /* ----------------------- 상품 리스트 끝 ------------------------ */
