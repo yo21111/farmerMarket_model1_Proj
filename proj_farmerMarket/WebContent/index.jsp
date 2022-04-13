@@ -23,6 +23,8 @@
 			<!-- ///////////////////////////////////////메인 이미지 슬라이드 시작////////////////////////////////////////////////// -->
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			<div id="mainSlide">
+
+				<!-- Slideshow container -->
 				<div class="slideshow-container">
 
 					<!-- Full-width images with number and caption text -->
@@ -36,14 +38,14 @@
 					<div class="mySlides fade">
 						<div class="numbertext">2 / 3</div>
 						<a href="#"><img src="/images/mainSlide/mainSlide_img2.png"
-							style="width: 100%"></a>
+							style="width: 100%"> </a>
 						<div class="text"></div>
 					</div>
 
 					<div class="mySlides fade">
 						<div class="numbertext">3 / 3</div>
 						<a href="#"><img src="/images/mainSlide/mainSlide_img3.png"
-							style="width: 100%"></a>
+							style="width: 100%"> </a>
 						<div class="text"></div>
 					</div>
 
@@ -60,7 +62,6 @@
 						onclick="currentSlide(3)"></span>
 				</div>
 			</div>
-			<!-- div#mainSlide -->
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			<!-- ///////////////////////////////////////메인 이미지 슬라이드 끝//////////////////////////////////////////////////// -->
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

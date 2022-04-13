@@ -106,8 +106,8 @@ public class MemberDao {
 	// 회원정보 가져오기 메서드
 	public MemberBean selectMemberOne(String uId) {
 		boolean flag = false;
-		MemberBean mem = new MemberBean(); 
-		
+		MemberBean mem = new MemberBean();
+
 		try {
 			conn = pool.getConnection();
 			sql = "select * from member where uId=?";
@@ -115,7 +115,7 @@ public class MemberDao {
 
 			pstmt.setString(1, uId);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				mem.setuId(rs.getString("uId"));
 				mem.setuPw(rs.getString("uPw"));
 				mem.setuName(rs.getString("uName"));
@@ -126,7 +126,7 @@ public class MemberDao {
 				mem.setuBirth(rs.getString("uBirth"));
 				mem.setJoinTime(rs.getString("joinTime"));
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
