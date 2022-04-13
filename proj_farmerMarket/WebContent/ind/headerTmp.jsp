@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
-String session_id = (String) session.getAttribute("idKey");
+String uId_session = (String) session.getAttribute("uId_Session");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,7 +27,7 @@ String session_id = (String) session.getAttribute("idKey");
 
 				<!-- 회원가입 이동 -->
 				<%
-				if (session_id == null) {
+				if (uId_session == null) {
 					// 비로그인 상태일 때
 				%>
 				<li class="mainLi"><a href="/member/member.jsp">회원가입</a></li>

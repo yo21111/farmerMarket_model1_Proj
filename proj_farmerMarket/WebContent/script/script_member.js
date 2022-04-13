@@ -57,11 +57,10 @@ $(function() {
 		let data = $("input#idInput").val().trim();
 		$("input#idInput").val(data);
 
-		let regExp = /[a-z|A-Z|0-9]/g;
+		let regExp = /[a-z|A-Z|0-9| ]/g;
 		let rExpRes = regExp.test(data);
 
 		if (!rExpRes) {
-			alert("영문과 숫자로만 입력해주세요.");
 			$("input#idInput").val("");
 			$("input#idInput").focus();
 			return;
@@ -309,8 +308,8 @@ $(function() {
 		}
 		// year, month, day의 값을 input#birth에 넣기
 		let year = $("input.birthInput:nth-child(1)").val();
-		let month = $("input.birthInput:nth-child(2)").val();
-		let day = $("input.birthInput:nth-child(3)").val();
+		let month = $("input.birthInput:nth-child(3)").val();
+		let day = $("input.birthInput:nth-child(5)").val();
 
 		$("input#birth").val(year + month + day);
 

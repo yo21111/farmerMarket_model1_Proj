@@ -11,7 +11,7 @@ String msg = "아이디 또는 비밀번호를 확인해주세요.";
 
 boolean result = memberDao.loginMember(uId, uPw);
 if (result) {
-	session.setAttribute("idKey", uId);
+	session.setAttribute("uId_Session", uId);
 %>
 <script>
 	alert("<%=uId%>님 환영합니다.");

@@ -1,6 +1,210 @@
 @charset "UTF-8";
 @import url(/source/style_Reset.css);
 
+/* --------------------------------------------------------------------------- */
+/* ---------------------------update_info 시작 -------------------------------- */
+/* --------------------------------------------------------------------------- */
+
+.necessary::after {
+	content: " *";
+	color: #ee6a7b;
+}
+
+div#form-title {
+	border-bottom: 4px solid #000;
+}
+
+div#form-title>p {
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	margin: 50px 0;
+}
+
+#form-title div#form-info {
+	text-align: right;
+	font-size: 12px;
+	margin: 15px 0;
+}
+
+form#updateFrm table {
+	margin: 10px auto;
+	width: 750px;
+}
+
+form#updateFrm table td:nth-child(1) {
+	font-weight: bold;
+	width: 160px;
+	padding-left: 20px;
+}
+
+form#updateFrm table input {
+	outline: none;
+}
+
+form#updateFrm table input[type=text], table input[type=password] {
+	width: 370px;
+	padding: 13px 15px;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+}
+
+form#updateFrm table button {
+	width: 130px;
+	font-weight: bold;
+	padding: 13px 15px;
+	color: #5f0080;
+	border: 1px solid #5f0080;
+	background-color: #fff;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+form#updateFrm table tr.beforeAddr button.addrBtn {
+	width: 370px;
+	padding: 13px 15px;
+}
+
+form#updateFrm table label {
+	margin-left: 2px;
+	margin-right: 60px;
+}
+
+form#updateFrm table input[type=radio] {
+	transform: translate(-1px, 5px);
+	width: 17px;
+	height: 17px;
+}
+
+div#birthArea {
+	width: 370px;
+	border: 1px solid #aaa;
+	border-radius: 3px;
+	text-align: center;
+}
+
+div#birthArea span {
+	color: #aaa;
+	font-size: 18px;
+}
+
+form#updateFrm table input.birthInput {
+	width: 110px;
+	text-align: center;
+	border: none;
+}
+
+form#updateFrm table button.pwBtn, form#updateFrm table button.pwChkBtn
+	{
+	width: 26px;
+	cursor: pointer;
+	padding: 0;
+	position: absolute;
+	border: none;
+	transform: translate(-105px, -9px);
+}
+
+/* -------------------------클릭시 보이도록-------------------------- */
+tr#afterId, tr#afterPw, tr#afterPwChk, tr#afterPhone, tr.afterAddr {
+	display: none;
+}
+/* -------------------------클릭시 보이도록-------------------------- */
+form#updateFrm table tr#afterId td div, tr#afterPw td div, tr#afterPwChk td div,
+	tr.afterAddr td div {
+	margin: 7px 16px;
+	color: #777;
+	transform: translateY(-8px);
+}
+
+form#updateFrm table tr#afterPhone td div {
+	margin: 7px 16px;
+	color: #777;
+	transform: translateY(-8px);
+	color: green;
+}
+
+main#main table#agreeTbl {
+	width: 750px;
+	margin: 10px auto;
+	padding: 20px 10px;
+	border-top: 3px solid #000;
+	border-bottom: 1px solid #eee;
+}
+
+main#main table#agreeTbl td#title {
+	width: 130px;
+	font-weight: bold;
+}
+
+main#main table#agreeTbl td button#agreeBtn {
+	font-size: 13px;
+	border: none;
+	background-color: #fff;
+	color: #5f0080;
+	font-weight: bold;
+	cursor: pointer;
+	transform: translateX(10px);
+}
+
+main#main table#agreeTbl div#joinAgreement {
+	display: none;
+}
+
+main#main table#agreeTbl td:nth-child(2) {
+	width: 50px;
+}
+
+main#main table#agreeTbl td:nth-child(2) input {
+	width: 17px;
+	height: 17px;
+	transform: translateY(1px);
+}
+
+table#agreeTbl tr:first-child td {
+	height: .9em;
+}
+
+table#agreeTbl td p#allAgree {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+table#agreeTbl tr:nth-child(2) td {
+	height: 8px;
+	font-size: 13px;
+}
+
+table#agreeTbl tr.oneAgree {
+	font-size: 15px;
+	color: #666;
+}
+
+table#agreeTbl tr.oneAgree span {
+	color: #999;
+}
+
+div#btnArea {
+	border-bottom: 1px solid #eee;
+	padding: 20px 0;
+	text-align: center;
+}
+
+div#btnArea button#memberBtn {
+	width: 240px;
+	height: 55px;
+	color: #fff;
+	font-size: 16px;
+	background-color: #5f0080;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------- */
+/* ---------------------------update_info 끝 -------------------------------- */
+/* --------------------------------------------------------------------------- */
+
 .checked{
 	 background-color:#ccc;
 }
@@ -234,29 +438,29 @@ div#form-title>p {
 	margin: 15px 0;
 }
 
-form#memberFrm table {
+form#updateFrm table {
 	margin: 10px auto;
 	width: 750px;
 }
 
-form#memberFrm table td:nth-child(1) {
+form#updateFrm table td:nth-child(1) {
 	font-weight: bold;
 	width: 160px;
 	padding-left: 20px;
 }
 
-form#memberFrm table input {
+form#updateFrm table input {
 	outline: none;
 }
 
-form#memberFrm table input[type=text], table input[type=password] {
+form#updateFrm table input[type=text], table input[type=password] {
 	width: 370px;
 	padding: 13px 15px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
 }
 
-form#memberFrm table button {
+form#updateFrm table button {
 	width: 130px;
 	font-weight: bold;
 	padding: 13px 15px;
@@ -267,19 +471,19 @@ form#memberFrm table button {
 	cursor: pointer;
 }
 
-form#memberFrm table tr.beforeAddr button.addrBtn {
+form#updateFrm table tr.beforeAddr button.addrBtn {
 	width: 370px;
 	padding: 13px 15px;
 }
 
 
 
-form#memberFrm table label {
+form#updateFrm table label {
 	margin-left: 2px;
 	margin-right: 60px;
 }
 
-form#memberFrm table input[type=radio] {
+form#updateFrm table input[type=radio] {
 	transform: translate(-1px, 5px);
 	width: 17px;
 	height: 17px;
@@ -297,13 +501,13 @@ div#birthArea span {
 	font-size: 18px;
 }
 
-form#memberFrm table input.birthInput {
+form#updateFrm table input.birthInput {
 	width: 110px;
 	text-align: center;
 	border: none;
 }
 
-form#memberFrm table button.pwBtn, form#memberFrm table button.pwChkBtn
+form#updateFrm table button.pwBtn, form#updateFrm table button.pwChkBtn
 	{
 	width: 26px;
 	cursor: pointer;
@@ -318,14 +522,14 @@ tr#afterId, tr#afterPw, tr#afterPwChk, tr#afterPhone, tr.afterAddr {
 	display: none;
 }
 /* -------------------------클릭시 보이도록-------------------------- */
-form#memberFrm table tr#afterId td div, tr#afterPw td div, tr#afterPwChk td div,
+form#updateFrm table tr#afterId td div, tr#afterPw td div, tr#afterPwChk td div,
 	tr.afterAddr td div {
 	margin: 7px 16px;
 	color: #777;
 	transform: translateY(-8px);
 }
 
-form#memberFrm table tr#afterPhone td div {
+form#updateFrm table tr#afterPhone td div {
 	margin: 7px 16px;
 	color: #777;
 	transform: translateY(-8px);
@@ -398,7 +602,7 @@ div#btnArea {
 	text-align: center;
 }
 
-div#btnArea button#memberBtn {
+div#btnArea button#updateBtn {
 	width: 240px;
 	height: 55px;
 	color: #fff;

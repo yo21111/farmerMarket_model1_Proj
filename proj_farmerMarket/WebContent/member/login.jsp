@@ -30,7 +30,7 @@
 								placeholder="아이디를 입력해주세요"></td>
 						</tr>
 						<tr>
-							<td><input id="pwInput" type="password" name="uId"
+							<td><input id="pwInput" type="password" name="uPw"
 								placeholder="비밀번호를 입력해주세요">
 								<button class="pwBtn" type="button">
 									<i class="fa fa-eye-slash"></i>

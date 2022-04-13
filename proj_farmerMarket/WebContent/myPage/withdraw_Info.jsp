@@ -2,8 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <%
-String uId_Session = (String)session.getAttribute("uId_Session"); 
-%> 
+String uId_Session = (String) session.getAttribute("uId_Session");
+if(uId_Session == null) {
+	response.sendRedirect("/member/login.jsp");
+}
+%>
 <!-- Community 카피한 것 -->
 
 <!DOCTYPE html>
@@ -57,10 +60,11 @@ String uId_Session = (String)session.getAttribute("uId_Session");
 					</div>
 				</div>
 				<hr class="sepLine">
-				
+
 				<div id="contents" class="memQuitDiv">
 
-					<form name="memQuitFrm" id="memQuitFrm">
+					<form id="memQuitFrm"
+						action="/member/deleteProc.jsp">
 						<p>아래 버튼을 클릭하시면 파머 마켓을 탈퇴합니다.</p>
 						<button type="button" id="memQuitBtn">회원 탈퇴하기</button>
 					</form>
