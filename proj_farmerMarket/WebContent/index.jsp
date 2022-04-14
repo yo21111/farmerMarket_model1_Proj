@@ -1,6 +1,9 @@
+<%@page import="pack_Goods.GoodsBean"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -74,364 +77,98 @@
 			String[] category = { "M", "S", "V", "F" };
 			String[] title = { "육류", "해산물", "채소", "과일" };
 			String[] subTitle = { " : 이 달의 핫딜", " : 이 달의 추천 품목" };
-			String sql = "";
-				
-				/* 		
-	
-				for (int i = 0; i < category.length; i++) {
+			String orderby = "";
+
+			for (int i = 0; i < category.length; i++) {
 				String target = category[i];
 
 				for (int j = 0; j < 2; j++) {
 					if (j == 0) {
-					//sql = select * from goods where goodsCode like '" + target + "%' order by 조건 limit 3'
-					//   -> 조건 1. order by goodsPrice
+					orderby = " order by goodsPrice ";
 
 					} else {
-					//sql = select * from goods where goodsCode like '" + target + "%' order by 조건 limit 3'
-					//   -> 조건 2. order by goodsPrice DESC
+					orderby = " order by goodsPrice DESC ";
 
-					} 
+					}
+
+					//ArrayList 반복 시작
+					List<GoodsBean> list = goodsDao.selectGoodsList(category[i], orderby);
+			%>
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
+
+			<div class="mainList">
+				<div class="goods_title">
+					<a href="#"><%=title[i] %><%=subTitle[j] %></a>
+				</div>
+				<div class="goods_container dFlex">
 					
-					// sql로 가져오는 필수 값 : 제품코드, 제품이미지, 제품이름, 제품소제목, 제품할인율
-						String goodsCode = "";
-						String goodsImg = "";
-						String goodsName = "";
-						String goodsCatch = "";
-						int goodsPrice = 0;
-						int eventRate = 0;
-						
+					<%
+					for (int k = 0; k < list.size(); k++) {
+						GoodsBean gBean = list.get(k);
+						// sql로 가져오는 필수 값 : 제품코드, 제품이미지, 제품이름, 제품소제목, 제품할인율
+						String goodsCode = gBean.getGoodsCode();
+						String goodsImg = gBean.getGoodsImg();
+						String goodsName = gBean.getGoodsName();
+						String goodsCatch = gBean.getGoodsCatch();
+						int goodsPrice = gBean.getGoodsPrice();
+						int eventRate = gBean.getEventRate();
+
 						// 할인 금액
 						int salePrice = goodsPrice - (goodsPrice * eventRate / 100);
-					*/
+						
+					%>
+					
+					<div class="goods">
+						<div class="goodsImg">
+							<img src="/images<%=goodsImg %>" alt="상품이미지">
+						</div>
+
+						<div class="goodsBtn">
+							<i class="fa fa-fw fa-shopping-cart"></i>
+						</div>
+
+						<div class="hidden">
+							<input type="hidden" value="<%=goodsCode %>">
+						</div>
+						<div class="goodsName">[<%=title[i] %>] <%=goodsName %></div>
+						<div class="goodsCatch"><%=goodsCatch %></div>
+						<div class="goodsPrice">
+							<%
+							if (eventRate != 0) {
+							%>
+							<span class="salePer"><%=eventRate%>%</span>
+							<%
+							}
+							%>
+							<span class="price"><%=goodsPrice %></span>
+						</div>
+						<%
+						if (eventRate != 0) {
+						%>
+						<div class="beforePrice"><%=salePrice %></div>
+						<%
+						}
+						%>
+					</div>
+					<!-- div#goods -->
+					<%
+					} // dao 반복문					
+					%>
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
+
+
+				</div>
+				<!-- div#goods_container -->
+			</div>
+			<!-- div#mainList -->
+			<%
+				} //subtitle 반복문
+			} // category 반복문
 			%>
-			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 반복되는 부분 시작 /////////////////////////////-->
-
-			<div class="mainList">
-				<div class="goods_title">
-					<a href="#">육류 : 이 달의 추천목록</a>
-				</div>
-				<div class="goods_container dFlex">
-					<div class="goods">
-
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력1 !!!!!!">
-						</div>
-						<div class="goodsName">
-							[국거리용 한우] 
-						</div>
-						<div class="goodsCatch">정말 맛있는 국거리용 소고기</div>
-						<div class="goodsPrice">
-							<%//if (eventRate != 0) {  %>
-							<span class="salePer">10%</span> 
-							<%//} %>
-							<span class="price">10000</span>
-						</div>
-							<%//if (eventRate != 0) {  %>
-						<div class="beforePrice">9000</div>
-							<%//} %>
-					</div>
-					<!-- div#goods -->
-					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 반복되는 부분 끝 /////////////////////////////-->
-
-
-					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-					<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-				</div>
-				<!-- div#goods_container -->
-			</div>
-			<!-- div#mainList -->
-				<%
-				/* } //2번 반복문
-			} // category for문 */
-			%>
-
-			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 시작 /////////////////////////////-->
-			<div class="mainList">
-				<div class="goods_title">
-					<a href="#">해산물 : 이 달의 추천목록</a>
-				</div>
-				<div class="goods_container dFlex">
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-
-				</div>
-				<!-- div#goods_container -->
-			</div>
-			<!-- div#mainList -->
-
-
-			<div class="mainList">
-				<div class="goods_title">
-					<a href="#">과일 : 이 달의 추천목록</a>
-				</div>
-				<div class="goods_container dFlex">
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-
-				</div>
-				<!-- div#goods_container -->
-			</div>
-			<!-- div#mainList -->
-
-
-			<div class="mainList">
-				<div class="goods_title">
-					<a href="#">채소 : 이 달의 추천목록</a>
-				</div>
-				<div class="goods_container dFlex">
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-
-					<div class="goods">
-						<div class="goodsImg">
-							<img src="/images/beef1_main.png" alt="상품이미지">
-						</div>
-
-						<div class="goodsBtn">
-							<i class="fa fa-fw fa-shopping-cart"></i>
-						</div>
-
-						<div class="hidden">
-							<input type="hidden" value="!!!!!! 상품코드를 여기에 입력 !!!!!!">
-						</div>
-
-						<div class="goodsPrice">
-							<span class="salePer">10%</span> <span class="price">10000</span>
-						</div>
-						<div class="beforePrice">9000</div>
-					</div>
-					<!-- div#goods -->
-				</div>
-				<!-- div#goods_container -->
-			</div>
-			<!-- div#mainList -->
-			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
-			<!-- ///////////////////////////// 삭제할 부분 끝 /////////////////////////////-->
 
 
 			<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

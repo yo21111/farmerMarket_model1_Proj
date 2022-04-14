@@ -20,7 +20,7 @@ if (result) {
 	session.setAttribute("uId_Session", uId);
 
 //만약 로그인 전에 가려했던 페이지가 있었다면?	
-if (to != null) {
+if (!to.equals("null")) {
 %>
 <script>
 	let url = <%=to%> + "?goodsCode=" + <%=with%>;

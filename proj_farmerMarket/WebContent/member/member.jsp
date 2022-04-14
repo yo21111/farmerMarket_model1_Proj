@@ -157,7 +157,7 @@
 						<tr>
 							<td>성별</td>
 							<td><label for="genderMInput"> <input
-									id="genderMInput" type="radio" name="uGender" value="1">
+									id="genderMInput" type="radio" name="uGender" value="1" checked>
 									남자
 							</label> <label for="genderWInput"> <input id="genderWInput"
 									type="radio" name="uGender" value="2"> 여자

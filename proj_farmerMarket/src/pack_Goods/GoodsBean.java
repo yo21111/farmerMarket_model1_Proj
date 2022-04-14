@@ -8,7 +8,7 @@ public class GoodsBean {
 	private int goodsPrice;				// 제품가격
 	private String goodsName;		// 제품이름
 	private String goodsCatch;		// 제품소제목
-	private String goodsWeigth;		// 제품중량/용량
+	private String goodsWeight;		// 제품중량/용량
 	private String contentImg1;		// 제품상세설명 상단 이미지
 	private String contentImg2;		// 제품상세설명 중단 이미지
 	private String contentImg3;		// 제품상세설명 하단 이미지
@@ -58,11 +58,11 @@ public class GoodsBean {
 	public void setGoodsCatch(String goodsCatch) {
 		this.goodsCatch = goodsCatch;
 	}
-	public String getGoodsWeigth() {
-		return goodsWeigth;
+	public String getGoodsWeight() {
+		return goodsWeight;
 	}
-	public void setGoodsWeigth(String goodsWeigth) {
-		this.goodsWeigth = goodsWeigth;
+	public void setGoodsWeight(String goodsWeight) {
+		this.goodsWeight = goodsWeight;
 	}
 	public String getContentImg1() {
 		return contentImg1;

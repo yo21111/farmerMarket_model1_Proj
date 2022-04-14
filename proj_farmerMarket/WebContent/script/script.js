@@ -45,7 +45,6 @@ $(function() {
 	$("div.goodsBtn").click(function() {
 		//표현식을 통해 입력받은 상품코드
 		let goodsCode = $(this).next().children().val();
-		alert(goodsCode);
 
 		location.href = "/mainPage/updateBasketProc.jsp?goodsCode=" + goodsCode;
 
@@ -55,7 +54,6 @@ $(function() {
 	$("div.goodsImg").click(function() {
 		//표현식을 통해 입력받은 상품코드
 		let goodsCode = $(this).next().next().children().val();
-		alert(goodsCode);
 
 		location.href = "/mainPage/toGoodsDetailProc.jsp?goodsCode=" + goodsCode;
 	});

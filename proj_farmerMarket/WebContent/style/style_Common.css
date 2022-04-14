@@ -112,7 +112,7 @@ main#index div.mainList div.goods_title {
 }
 
 main#index div.mainList div.goods_container {
-	align-items: center;
+	align-items: flex-start;
 	justify-content: center;
 	/* overflow: hidden; */
 }
@@ -183,13 +183,13 @@ div.mainList div.goods div.goodsCatch {
 div.mainList div.goods div.goodsPrice {
 	font-size: 17px;
 	font-weight: bold;
-	padding: 10px 0;
+	padding: 10px 0 10px 5px;
+	color: #725973;
 }
 
 div.mainList div.goods div.goodsPrice span.salePer {
 	font-size: 13px;
 	color: #fa622f;
-	padding-left: 5px;
 }
 
 div.mainList div.goods div.goodsPrice span.price:after {

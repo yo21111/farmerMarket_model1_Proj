@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import pack_DBCP.DBConnectionMgr;
+import pack_Goods.GoodsBean;
 
 public class MemberDao {
 	private Connection conn = null;
@@ -105,7 +108,6 @@ public class MemberDao {
 
 	// 회원정보 가져오기 메서드
 	public MemberBean selectMemberOne(String uId) {
-		boolean flag = false;
 		MemberBean mem = new MemberBean();
 
 		try {

@@ -51,6 +51,10 @@ div#detail_info {
 	font-size: 25px;
 }
 
+#detail_info>table td.goods_price:after {
+	content: "원";
+}
+
 #detail_info>table td.goods_txt {
 	color: #666;
 }
@@ -94,6 +98,10 @@ div#detail_info {
 #detail_info>table td#totalPrice>span {
 	font-weight: bold;
 	font-size: 30px;
+}
+
+#detail_info>table td#totalPrice>span:after {
+	content: "원";
 }
 
 #detail_info>table td.goods_btnArea:first-child {
@@ -158,8 +166,12 @@ nav#quickmenu {
 
 /*##### 상세설명 구간 시작 ########*/
 div#explain_goods {
-	margin-bottom: 70px;
-	border: 1px solid #000;
+	width: 1000px;
+	margin: 80px auto;
+}
+
+div#explain_goods img {
+	width: 100%;
 }
 
 /*#######고객센터 안내 시작###########*/

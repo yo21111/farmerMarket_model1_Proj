@@ -6,23 +6,8 @@ String uId_session = (String)session.getAttribute("uId_Session");
 %>
 <jsp:useBean id="memberDao" class="pack_Member.MemberDao" />
 <jsp:useBean id="mBean" class="pack_Member.MemberBean" />
+<jsp:setProperty name="mBean" property="*"/>
 <%
-
-String uPw = request.getParameter("uPw");
-String uName = request.getParameter("uName");
-String uEmail = request.getParameter("uEmail");
-String uPhone = request.getParameter("uPhone");
-String uAddr = request.getParameter("uAddr");
-String uGender = request.getParameter("uGender");
-String uBirth = request.getParameter("uBirth");
-
-mBean.setuPw(uPw);
-mBean.setuName(uName);
-mBean.setuEmail(uEmail);
-mBean.setuPhone(uPhone);
-mBean.setuAddr(uAddr);
-mBean.setuGender(uGender);
-mBean.setuBirth(uBirth);
 
 boolean result = memberDao.updateMember(mBean, uId_session);
 
