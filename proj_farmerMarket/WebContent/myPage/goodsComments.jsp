@@ -1,6 +1,12 @@
+<%@page import="pack_MyPage.GoodsCommentsBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<%
+request.setCharacterEncoding("UTF-8");
+String uId = (String)session.getAttribute("uId_Session");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,12 +59,11 @@
 								<tr>
 									<td><strong>제목</strong></td>
 									<td><strong>작성일</strong></td>
-									<td><strong>답변상태</strong></td>
 								</tr>
 								<tr>
 									<td>상품 후기 입니다.</td>
 									<td>2022-04-12</td>
-									<td>답변 완료</td>
+
 								</tr>
 							</tbody>
 						</table>

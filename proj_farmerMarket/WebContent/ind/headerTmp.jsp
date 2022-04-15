@@ -75,10 +75,10 @@ String uId_session = (String) session.getAttribute("uId_Session");
 		<div id="header-bot" class="dFlex">
 			<div id="header-GNB">
 				<ul id="gnbUl" class="dFlex">
-					<li class="gnbLi"><a href="#">채소</a></li>
-					<li class="gnbLi"><a href="#">과일</a></li>
-					<li class="gnbLi"><a href="#">해산물</a></li>
-					<li class="gnbLi"><a href="#">육류</a></li>
+					<li class="gnbLi"><a href="/goods/goods.jsp">채소</a></li>
+					<li class="gnbLi"><a href="/goods/goods.jsp">과일</a></li>
+					<li class="gnbLi"><a href="/goods/goods.jsp">해산물</a></li>
+					<li class="gnbLi"><a href="/goods/goods.jsp">육류</a></li>
 				</ul>
 			</div>
 

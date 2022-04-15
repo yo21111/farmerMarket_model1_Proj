@@ -1,6 +1,12 @@
+<%@page import="pack_MyPage.WishListBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<%
+request.setCharacterEncoding("UTF-8");
+String uId = (String)session.getAttribute("uId_Session");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -69,6 +75,7 @@
 									<td><strong>장바구니 담기</strong></td>
 									<td><strong>삭제</strong></td>
 								</tr>
+
 								<tr>
 									<td><div id="images">이미지</div></td>
 									<td>상품명</td>

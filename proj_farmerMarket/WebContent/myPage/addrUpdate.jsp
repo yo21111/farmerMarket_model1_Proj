@@ -1,6 +1,12 @@
+<%@page import="pack_MyPage.AddrBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<%
+request.setCharacterEncoding("UTF-8");
+String uId = (String)session.getAttribute("uId_Session");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>

@@ -1,6 +1,12 @@
+<%@page import="pack_MyPage.OrderListBean"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao" />
+<%
+request.setCharacterEncoding("UTF-8");
+String uId = (String)session.getAttribute("uId_Session");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,7 +30,7 @@
 				<nav id="mainlnb_M">
 					<h2>마이 마켓</h2>
 					<ul>
-						<li class="main_MLi checked" ><a href="#">주문 내역</a></li>
+						<li class="main_MLi checked"><a href="#">주문 내역</a></li>
 						<li class="main_MLi"><a href="/myPage/wishList.jsp">찜한 상품</a></li>
 						<li class="main_MLi"><a href="/myPage/addrUpdate.jsp">배송지
 								관리</a></li>
@@ -39,23 +45,29 @@
 				</nav>
 			</div>
 			<div id="contentsArea">
-			
-			<div id="title_container" class="dFlex">
-				<div id="title"><h2>주문 내역</h2></div>
-				<div id="subtitle"><p>*지난 3년간의 주문 내역 조회가 가능합니다.</p></div>
-				<div id="select"><select name="" id="">
-						<option value="">전체 기간</option>
-						<option value="">2022년</option>
-						<option value="">2021년</option>
-						<option value="">2020년</option>
-					</select></div>
-			</div>
-			
-		
-				<hr class = "sepLine">
+
+				<div id="title_container" class="dFlex">
+					<div id="title">
+						<h2>주문 내역</h2>
+					</div>
+					<div id="subtitle">
+						<p>*지난 3년간의 주문 내역 조회가 가능합니다.</p>
+					</div>
+					<div id="select">
+						<select name="" id="">
+							<option value="">전체 기간</option>
+							<option value="">2022년</option>
+							<option value="">2021년</option>
+							<option value="">2020년</option>
+						</select>
+					</div>
+				</div>
+
+
+				<hr class="sepLine">
 				<div id="contents">
-				
-				<div id="orderListArea">
+
+					<div id="orderListArea">
 						<table id="orderListTbl">
 							<tbody>
 								<tr>
@@ -63,16 +75,19 @@
 									<td><strong>상품명</strong></td>
 									<td><strong>가격</strong></td>
 								</tr>
+								<%List<OrderListBean> list = myPageDao.selectOrderList(uId);%>
+
 								<tr>
 									<td><div id="images">이미지</div></td>
 									<td>상품명</td>
-									<td>1,000</td>
+									<td>가격</td>
 								</tr>
+
 							</tbody>
 						</table>
 					</div>
-				
-				
+
+
 				</div>
 
 

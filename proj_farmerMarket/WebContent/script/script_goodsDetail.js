@@ -11,13 +11,17 @@ $(function() {
 	}*/
 
 
+	////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// 수정한 내용 시작 ////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
+
 	// 구매수량 버튼 조절
 	$("#cntPlus").click(function() {
 		if (parseInt($(".cntBtn>input").val()) < 99) {
 			let cnt = parseInt($(".cntBtn>input").val()) + 1;
 			$(".cntBtn>input").val(cnt);
 
-			let price = parseInt($("td.goods_price").text().replace(/,/g , ''));
+			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
 			$("span.goods_price").text((price * cnt).toLocaleString());
 		}
 	});
@@ -27,19 +31,21 @@ $(function() {
 			let cnt = parseInt($(".cntBtn>input").val()) - 1;
 			$(".cntBtn>input").val(cnt);
 
-			let price = parseInt($("td.goods_price").text().replace(/,/g , ''));
+			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
 			$("span.goods_price").text((price * cnt).toLocaleString());
 		}
 	});
-
+	////////////////////////////////////////////////////////////////////////////
+	//////////////////////////// 수정한 내용 끝 ////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////
 	//////////////////////////// 추가한 내용 시작 ////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////
-
+	
 	// 천단위 기호 붙여주기 - td.goods_price
 	$("td.goods_price").each(function(i, v) {
-		let price = parseInt($(this).text());
+		let price = parseInt($("td.goods_price").text());
 		price = price.toLocaleString();
 		$(this).text(price);
 	});
@@ -51,6 +57,106 @@ $(function() {
 		$(this).text(price);
 	});
 
+
+
+	/* ---------------------- goodsQna 시작 ---------------------- */
+
+	// 문의하기 버튼 클릭
+	$("button#goodsQna").click(function() {
+		let position = $("td#goodsComment").prop("data-position") - 40;
+		$("div#goodsQna .popup").css({ "top": "position" });
+		$("div#goodsQna div.dimmed").css({ "display": "inline-block" });
+
+
+	});
+
+	//문의하기 취소버튼 클릭
+	$("div#goodsQna button#cancelBtn").click(function() {
+		$("div#goodsQna div.dimmed").css({ "display": "none" });
+	});
+
+	//문의하기 등록 버튼 클릭
+	$("div#goodsQna button#registerBtn").click(function() {
+		let goodsCode = $("td#hiddenTd input", opener).val();
+		$("div#goodsQna input#goodsCode").val(goodsCode);
+		// 업로드 파일 제한 (확장자를 사용하여 제한)
+		let fName = $("#fName").val();
+
+		//lastIndexOf() : 오른쪽부터 세어서 "."의 인덱스 번호 찾기
+		let dotIdx = fName.lastIndexOf(".");
+
+		// ext : extension, 확장자
+		let ext = fName.substring(dotIdx + 1);
+		// .의 위치 다음부터 마지막 인덱스까지 문자열 자르기
+
+		ext = ext.toLowerCase(); //소문자로 변환
+
+		const forbidExt = ["exe", "cab", "dll", "js"]; //이외 원하는 확장자 계속 추가
+		let chk = false;
+		//for-Of : 변수가 인덱스 번호의 값을 반환
+		for (let x of forbidExt) { //for-in 구문 : 변수가 인덱스 번호 반환
+			if (x == ext) {
+				chk = true;
+			}
+		}
+
+		if (chk) {
+			alert("확장자가 " + ext + "인 파일은 업로드 하실 수 없습니다.");
+		} else {
+			//유효성 검사 통과시 submit
+			$("form#goodsQnaFrm").submit();
+		}
+	});
+	/* ---------------------- goodsQna 끝 ---------------------- */
+
+	/* ---------------------- commentPage 시작 ---------------------- */
+	// 후기 등록하기 버튼 클릭
+	$("button#reviewBtn").click(function() {
+		let position = $("table#review").prop("data-position") - 40;
+		$("div#commentPage div.dimmed").css({ "display": "inline-block" });
+		$("div#commentPage .popup").css({ "top": "position" });
+
+
+	});
+
+	//후기등록하기 취소버튼 클릭
+	$("div#commentPage button#cancelBtn").click(function() {
+		$("div#commentPage div.dimmed").css({ "display": "none" });
+	});
+
+	//후기 등록 버튼 클릭
+	$("div#commentPage button#registerBtn").click(function() {
+		let goodsCode = $("td#hiddenTd input").val();
+		$("div#commentPage input#goodsCode").val(goodsCode);
+		// 업로드 파일 제한 (확장자를 사용하여 제한)
+		let fName = $("#fName").val();
+
+		//lastIndexOf() : 오른쪽부터 세어서 "."의 인덱스 번호 찾기
+		let dotIdx = fName.lastIndexOf(".");
+
+		// ext : extension, 확장자
+		let ext = fName.substring(dotIdx + 1);
+		// .의 위치 다음부터 마지막 인덱스까지 문자열 자르기
+
+		ext = ext.toLowerCase(); //소문자로 변환
+
+		const forbidExt = ["exe", "cab", "dll", "js"]; //이외 원하는 확장자 계속 추가
+		let chk = false;
+		//for-Of : 변수가 인덱스 번호의 값을 반환
+		for (let x of forbidExt) { //for-in 구문 : 변수가 인덱스 번호 반환
+			if (x == ext) {
+				chk = true;
+			}
+		}
+
+		if (chk) {
+			alert("확장자가 " + ext + "인 파일은 업로드 하실 수 없습니다.");
+		} else {
+			//유효성 검사 통과시 submit
+			$("form#goodsCommentFrm").submit();
+		}
+	});
+	/* ---------------------- goodsComment 끝 ---------------------- */
 
 	////////////////////////////////////////////////////////////////////////////
 	//////////////////////////// 추가한 내용 끝 /////////////////////////////////
@@ -176,32 +282,6 @@ $(function() {
 	});
 
 
-
-	//후기게시판 CSS 적용
-	$("#review tbody tr").mouseover(function() {
-		$(this).css({
-			"background-color": "#f7f7f7"
-		});
-	});
-	$("#review tbody tr").mouseleave(function() {
-		$(this).css({
-			"background-color": "#fff"
-		});
-	});
-
-
-	$("#reviewBtn").mouseover(function() {
-		$(this).css({
-			"color": "#5f0080",
-			"background-color": "#fff"
-		});
-	});
-	$("#reviewBtn").mouseleave(function() {
-		$(this).css({
-			"color": "#fff",
-			"background-color": "#5f0080"
-		});
-	});
 
 	// QnA게시판 펼치기
 	$("#qaTbl>tbody td").click(function() {

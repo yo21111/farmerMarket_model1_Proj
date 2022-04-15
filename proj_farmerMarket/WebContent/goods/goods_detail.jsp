@@ -1,16 +1,19 @@
-<%@page import="pack_Goods.GoodsBean"%>
+<%@page import="java.util.List"%>
+<%@ page import="pack_MyPage.GoodsQnABean"%>
+<%@ page import="pack_MyPage.GoodsCommentsBean"%>
+<%@ page import="pack_Goods.GoodsBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" scope="request" />
 <%
 request.setCharacterEncoding("UTF-8");
 
-String goodsCode = (String)request.getParameter("goodsCode");
+String goodsCode = (String) request.getParameter("goodsCode");
 GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
 
 char category = goodsCode.charAt(0);
 String cate = "";
-if(category == 'M') {
+if (category == 'M') {
 	cate = "육류";
 } else if (category == 'S') {
 	cate = "해산물";
@@ -28,8 +31,8 @@ if(category == 'M') {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="/style/style_GoodsDetail.css">
 <link rel="stylesheet" href="/style/style_Template.css">
+<link rel="stylesheet" href="/style/style_GoodsDetail.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="/source/jquery-3.6.0.min.js"></script>
@@ -64,9 +67,13 @@ if(category == 'M') {
 						<table>
 							<tbody>
 								<tr>
+									<td id="hiddenTd"><input type="hidden"
+										value="<%=goodsCode%>"></td>
+								</tr>
+								<tr>
 									<td colspan="2" class="tdLine">
 										<h1>
-											[<%=cate %>]
+											[<%=cate%>]
 											<%=gBean.getGoodsName()%>
 											<%=gBean.getGoodsWeight()%>
 											(<%=gBean.getPackType()%>)
@@ -79,7 +86,8 @@ if(category == 'M') {
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2" class="goods_price"><%=gBean.getGoodsPrice()%></td>
+									<td colspan="2" class="goods_price"><%=gBean.getGoodsPrice()%>
+									</td>
 								</tr>
 								<tr>
 									<td class="goods_txt tdLine">판매단위</td>
@@ -109,8 +117,8 @@ if(category == 'M') {
 								</tr>
 								<tr>
 									<td colspan="2" id="totalPrice">총 상품금액 : <span
-										class="goods_price"></span>
-										<input type="hidden" value="<%=gBean.getGoodsPrice()%>"/>
+										class="goods_price"></span> <input type="hidden"
+										value="<%=gBean.getGoodsPrice()%>" />
 									</td>
 								</tr>
 								<tr>
@@ -202,10 +210,11 @@ if(category == 'M') {
 											- 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이페이지 내 <span>1:1문의</span>에
 											남겨주세요.
 										</p></th>
+										<!--  구현 대기중
 									<th class="reviewHead"><select>
-											<option>최근 등록일순</option>
-											<option>조회많은순</option>
-									</select></th>
+											<option value="recent">최근 등록일순</option>
+											<option value="view">조회많은순</option>
+									</select></th>-->
 								</tr>
 								<tr>
 									<th class="thTit">번호</th>
@@ -216,42 +225,52 @@ if(category == 'M') {
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>4</td>
-									<td>추천합니다</td>
-									<td>최*빈</td>
-									<td>2022-02-28</td>
-									<td>152</td>
-								</tr>
-								<tr>
-									<td colspan="5" class="hiddenRivew">처음 주문해 봤는데 정말 맛있어요
-										강추드립니다.</td>
-								</tr>
-								<!-- 
-										게시판 번호 반환 받아서 클래스명에 입력 후 해당 번호 게시글
-										클릭시 펼쳐지도록 설정 
-									-->
-								<tr>
-									<td>3</td>
-									<td>신선해요</td>
-									<td>김*영</td>
-									<td>2022-01-15</td>
-									<td>32</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>맛있어요</td>
-									<td>송*호</td>
-									<td>2021-09-05</td>
-									<td>579</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>최고에요!</td>
-									<td>조*정</td>
-									<td>2021-07-12</td>
-									<td>1469</td>
-								</tr>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
+<!-- //////////////////////////////////////////후기게시판 반복 시작////////////////////////////////////////////// -->							
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
+								<%
+								List<GoodsCommentsBean> list = goodsDao.selectGoodsCmtList(goodsCode);
+								
+								if (list.size() == 0) {
+									%>
+									<tr>
+										<td id="notFoundTd" colspan="5">아직 작성된 후기가 없습니다.</td>
+									</tr>
+									<%
+								} else {
+								for(int i = 0; i < list.size(); i++) {
+									GoodsCommentsBean cBean = list.get(i);
+									String fileName = cBean.getFileRName_c();
+								%>
+									<tr>
+										<td><%=cBean.getNo() %></td>
+										<td><%=cBean.getTitle_c() %></td>
+										<td><%=cBean.getuId() %></td>
+										<td><%=cBean.getWriteTime_c() %></td>
+										<td><%=cBean.getView_cnt_c() %></td>
+									</tr>
+									<tr>
+										<td colspan="5" class="hiddenRivew">
+											<div>
+												<input type="text" readonly value="<%=cBean.getTitle_c()%>">
+											</div>
+											<%if (fileName != null) { %>
+											<div>
+												<img src="/fileUpload/<%=fileName %>" alt="후기 이미지" />
+											</div>
+											<%} %>
+											<div>
+												<textarea wrap="hard" readonly><%=cBean.getContetns_c() %></textarea>
+											</div>
+										</td>
+									</tr>
+								<%
+									}
+								}
+								%>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
+<!-- //////////////////////////////////////////후기게시판 반복 끝//////////////////////////////////////////////// -->							
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->			
 							</tbody>
 							<tfoot>
 								<tr>
@@ -266,6 +285,12 @@ if(category == 'M') {
 											<button type="button">&gt;</button>
 										</div>
 									</td>
+								</tr>
+								<tr id="goodsCommentTr">
+									<td id="goodsComment" data-position="1"><jsp:include
+											page="/goods/goodsComment.jsp">
+											<jsp:param name="goodsCode" value="<%=goodsCode%>" />
+										</jsp:include></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -340,7 +365,13 @@ if(category == 'M') {
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="4"><button type="button">문의하기</button></td>
+									<td colspan="4"><button id="goodsQna" type="button">문의하기</button></td>
+								</tr>
+								<tr>
+									<td id="goodsQna" data-position="0"><jsp:include
+											page="/goods/goodsQna.jsp">
+											<jsp:param name="goodsCode" value="<%=goodsCode%>" />
+										</jsp:include></td>
 								</tr>
 							</tfoot>
 						</table>
