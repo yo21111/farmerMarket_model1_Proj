@@ -2,6 +2,11 @@
 
 @import url(/source/style_Reset.css);
 
+main#main {
+	width: 1200px;
+	margin: 0 auto;
+}
+
 hr.sepLine {
 	margin-bottom: 20px;
 }
@@ -22,7 +27,7 @@ div#detailImg>img {
 	height: 555px;
 }
 
-div#detail_info {
+form#basketFrm {
 	flex: 1;
 }
 
@@ -50,8 +55,19 @@ div#detail_info {
 	font-size: 25px;
 }
 
-#detail_info>table td.goods_price:after {
-	content: "원";
+
+#detail_info>table td.hidPrice {
+	text-decoration: line-through;
+	text-decoration-color: #ff0000;
+	border-bottom: none;
+	color: #808080;
+}
+
+#detail_info>table td.hPrice {
+	border-top: none;
+	font-size: 20px;
+	color: #ff0000;
+	font-weight: bold;
 }
 
 #detail_info>table td.goods_txt {
@@ -100,9 +116,6 @@ div#detail_info {
 	font-size: 30px;
 }
 
-#detail_info>table td#totalPrice>span:after {
-	content: "원";
-}
 
 #detail_info>table td.goods_btnArea:first-child {
 	text-align: right;
@@ -135,6 +148,7 @@ div#detail_info {
 div#goods_contents {
 	/* border: 1px solid #000; */
 	margin: 0 50px;
+	flex-wrap: wrap;/* 확인 필요 */
 }
 
 /*######큌메뉴 시작######## */
@@ -266,18 +280,59 @@ div#goods_center {
 	color: #555;
 	font-weight: bold;
 	padding: 20px 0;
+	font-weight: bold;
 }
 
 /*####### 후기 펼치기용 테이블 #########*/
+tr.hiddenRivewTitle:hover {
+	cursor: pointer;
+}
+
+#goods_center>table#review tr.hiddenTr {
+	display: none;
+	width: 100%;
+}
+
 #goods_center>table#review td.hiddenRivew {
+	width: 100%;
 	padding: 20px 70px;
 	text-align: left;
 	background-color: #fafafa;
-	display: none;
 }
 
-#goods_center>table#review td.hiddenRivew:hover {
-	background-color: #fafafa;
+#goods_center>table#review td.hiddenRivew div {
+	width: 100%;
+}
+
+#goods_center>table#review td.hiddenRivew div input {
+	font-weight: bold;
+	width: 100%;
+	font-size: 17px;
+	padding: 10px 20px;
+	border: 1px solid #eee;
+	outline: none;
+}
+
+#goods_center>table#review td.hiddenRivew div.img {
+	text-align: center;
+	height: 300px;
+	padding: 20px 0;
+}
+
+#goods_center>table#review td.hiddenRivew div img {
+	height: 100%;
+}
+
+#goods_center>table#review td.hiddenRivew div textarea {
+	width: 100%;
+	font-size: 17px;
+	padding: 10px 20px;
+	font-size: 17px;
+	resize: none;
+	border: 1px solid #eee;
+	outline: none;
+	height: 300px;
+	overflow: visible;
 }
 
 /*############################*/
@@ -400,18 +455,78 @@ div#goods_center {
 }
 
 /*####### QnA 펼치기용 테이블 #########*/
-#goods_center>table#qaTbl td.hiddenRivew {
-	background-color: #fafafa;
+#goods_center>table#qaTbl tr.hiddenTr {
 	display: none;
+	width: 100%;
+}
+
+#goods_center>table#qaTbl td.hiddenRivew {
+	width: 100%;
+	padding: 20px 70px;
+	text-align: left;
+	background-color: #fafafa;
 }
 
 #goods_center>table#qaTbl td.hiddenRivew>div {
 	padding: 20px 70px;
+	width: 100%;
 	text-align: left;
 }
 
 #goods_center>table#qaTbl td.hiddenRivew>div h1 {
 	padding-bottom: 20px;
+	color: #5f0080;
+	font-size: 2em;
+}
+
+#goods_center>table#qaTbl td.hiddenRivew input {
+	font-weight: bold;
+	width: 100%;
+	font-size: 17px;
+	padding: 10px 20px;
+	border: 1px solid #eee;
+	outline: none;
+}
+
+#goods_center>table#qaTbl div.managerA {
+	text-align: left;
+	line-height: 30px;
+}
+
+#goods_center>table#qaTbl div.managerA p {
+	font-size: 20px;
+}
+
+#goods_center>table#qaTbl td.hiddenRivew div.img {
+	text-align: center;
+	height: 300px;
+	padding: 20px 0;
+}
+
+#goods_center>table#qaTbl td.hiddenRivew div img {
+	height: 100%;
+}
+
+#goods_center>table#qaTbl td.hiddenRivew textarea {
+	width: 100%;
+	font-size: 17px;
+	padding: 10px 20px;
+	height: 300px;
+	overflow: visible;
+	font-size: 17px;
+	resize: none;
+	border: 1px solid #eee;
+	outline: none;
+	font-size: 17px;
+}
+
+#goods_center>table#qaTbl td#notFoundTd {
+	text-align: center;
+	font-size: 18px;
+	color: #555;
+	font-weight: bold;
+	padding: 20px 0;
+	font-weight: bold;
 }
 
 /*############################*/

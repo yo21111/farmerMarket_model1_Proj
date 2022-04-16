@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import pack_DBCP.DBConnectionMgr;
-
+import pack_Goods.GoodsBean;
 
 public class MyPageDao {
 	private Connection objConn = null;
@@ -22,27 +22,26 @@ public class MyPageDao {
 			pool = DBConnectionMgr.getInstance();
 		} catch (Exception e) {
 			System.out.println("DBCP E:" + e.getMessage());
-		} 
+		}
 	}
 
 	// 주문내역 메서드
 	// 주문내역 기간별 조회 기능 추가해야됨
-	public List<OrderListBean> selectOrderList(String uId) {
-		List<OrderListBean> list = new ArrayList<>();
+	public List<GoodsBean> selectOrderList(String uId) {
+		List<GoodsBean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
-	         sql = "select * from orderList where uId = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, uId);
-	         objRs = objPStmt.executeQuery();
-			
+			sql = "select g.goodsImg, g.goodsName, g.goodsPrice  from goods g left join orderList on g.goodsCode = orderList.goodsCode where orderList.uid =?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objRs = objPStmt.executeQuery();
+
 			while (objRs.next()) {
-				OrderListBean orderList = new OrderListBean();
-				orderList.setNo(objRs.getInt("no"));
-				orderList.setuId(objRs.getString("uId"));
-				orderList.setGoodsCode(objRs.getString("goodsCode"));
-				orderList.setGoodsCnt(objRs.getInt("goodsCnt"));
-				list.add(orderList);
+				GoodsBean goods = new GoodsBean();
+				goods.setGoodsImg(objRs.getString("goodsImg"));
+				goods.setGoodsName(objRs.getString("goodsName"));
+				goods.setGoodsPrice(objRs.getInt("goodsPrice"));
+				list.add(goods);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -52,22 +51,24 @@ public class MyPageDao {
 		return list;
 	}
 
-	//찜한 목록 메서드
-	public List<WishListBean> selectWishList(String uId) {
-		List<WishListBean> list = new ArrayList<>();
+	// 찜한 목록 메서드
+	public List<GoodsBean> selectWishList(String uId) {
+		List<GoodsBean> list = new ArrayList<>();
 		try {
+
 			objConn = pool.getConnection();
-	         sql = "select * from wishList where uId = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, uId);
-	         objRs = objPStmt.executeQuery();
-			
+			sql = "select g.goodsImg, g.goodsName, g.goodsPrice  from goods g left join wishlist on g.goodsCode = wishlist.goodsCode where wishlist.uid =?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objRs = objPStmt.executeQuery();
+
 			while (objRs.next()) {
-				WishListBean wishList  = new WishListBean();
-				wishList.setNo(objRs.getInt("no"));
-				wishList.setuId(objRs.getString("uId"));
-				wishList.setGoodsCode(objRs.getString("goodsCode"));
-				list.add(wishList);
+				GoodsBean goods = new GoodsBean();
+				goods.setGoodsImg(objRs.getString("goodsImg"));
+				goods.setGoodsName(objRs.getString("goodsName"));
+				goods.setGoodsPrice(objRs.getInt("goodsPrice"));
+
+				list.add(goods);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,81 +77,107 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	//찜한 목록 삭제 메서드
+
+	// 찜한 목록 삭제 메서드
 	public boolean deleteWishList(String goodsCode) {
 		int rs = 0;
 		try {
 			objConn = pool.getConnection();
-	         sql = "delete from wishList where goodsCode = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, goodsCode);
-	         rs = objPStmt.executeUpdate();
-			
+			sql = "delete from wishList where goodsCode = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, goodsCode);
+			rs = objPStmt.executeUpdate();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			pool.freeConnection(objConn, objPStmt, objRs);
 		}
-		return rs ==1 ? true : false;
+		return rs == 1 ? true : false;
 	}
-	
-	
-	// 배송지 추가 메서드 
-	public List<AddrBean> insertAddr(String uId) {
-		List<AddrBean> list = new ArrayList<>();
+
+	// 배송지 추가 메서드
+	public boolean insertAddr(String uId, String uName, String uAddr) {
+		boolean flag = false;
 		try {
 			objConn = pool.getConnection();
-	         sql = "insert * from Addr where uId = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, uId);
-	         objRs = objPStmt.executeQuery();
-			
-			while (objRs.next()) {
-				AddrBean addr  = new AddrBean();
-				addr.setNo(objRs.getInt("no"));
-				addr.setuId(objRs.getString("uId"));
-				addr.setuName(objRs.getString("uName"));
-				addr.setuAddr(objRs.getString("uAddr"));
-				list.add(addr);
+			sql = "insert into addr (uId, uName, uAddr) values(?,?,?)";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objPStmt.setString(2, uName);
+			objPStmt.setString(3, uAddr);
+
+			if (objPStmt.executeUpdate() == 1) {
+				flag = true;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			pool.freeConnection(objConn, objPStmt, objRs);
-		}
-		return list;
-	}
-	//배송지 삭제 메서드
-	public boolean deleteAddr(String addr) {
-		int rs = 0;
-		try {
-			objConn = pool.getConnection();
-	         sql = "delete from Addr where addr = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, addr);
-	         rs = objPStmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			pool.freeConnection(objConn, objPStmt);
 		}
-		return rs==1 ? true : false;
+		return flag;
 	}
-	
-	
-	//상품 후기 작성 메서드
+
+	// 배송지 삭제 메서드
+	public boolean deleteAddr(String uId, String no) {
+		int result = 0;
+		try {
+			objConn = pool.getConnection();
+			sql = "delete from Addr where uid=? and no = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			
+			int num = Integer.parseInt(no);
+			objPStmt.setString(1, uId);
+			objPStmt.setInt(2, num);
+			result = objPStmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return result == 1 ? true : false;
+	}
+
+	// addr테이블에 저장된 배송지 다 가져오기
+	public List<AddrBean> selectAddrList(String uId) {
+		List<AddrBean> list = new ArrayList<>();
+		try {
+			objConn = pool.getConnection();
+			sql = "select * from Addr where uId = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objRs = objPStmt.executeQuery();
+			
+			while (objRs.next()) {
+				AddrBean aBean = new AddrBean();
+				aBean.setNo(objRs.getInt("no"));
+				aBean.setuId(objRs.getString("uId"));
+				aBean.setuName(objRs.getString("uName"));
+				aBean.setuAddr(objRs.getString("uAddr"));
+				list.add(aBean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return list;
+	}
+
+	// 상품 후기 작성 메서드
 	public List<GoodsCommentsBean> selectComments(String uId) {
 		List<GoodsCommentsBean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
-	         sql = "select no, uId, goodsCode, title_c from goodsComments where uId = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, uId);
-	         objRs = objPStmt.executeQuery();
-			
+			sql = "select no, uId, goodsCode, title_c from goodsComments where uId = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objRs = objPStmt.executeQuery();
+
 			while (objRs.next()) {
-				GoodsCommentsBean comments  = new GoodsCommentsBean();
+				GoodsCommentsBean comments = new GoodsCommentsBean();
 				comments.setNo(objRs.getInt("no"));
 				comments.setuId(objRs.getString("uId"));
 				comments.setGoodsCode(objRs.getString("goodsCode"));
@@ -164,20 +191,19 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	
-	
-	//상품 문의 메서드
+
+	// 상품 문의 메서드
 	public List<GoodsQnABean> selectQnA(String uId) {
 		List<GoodsQnABean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
-	         sql = "select no, uId, goodsCode, title_q from goodsQnA where uId = ?";
-	         objPStmt = objConn.prepareStatement(sql);
-	         objPStmt.setString(1, uId);
-	         objRs = objPStmt.executeQuery();
-			
+			sql = "select no, uId, goodsCode, title_q from goodsQnA where uId = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objRs = objPStmt.executeQuery();
+
 			while (objRs.next()) {
-				GoodsQnABean qna  = new GoodsQnABean();
+				GoodsQnABean qna = new GoodsQnABean();
 				qna.setNo(objRs.getInt("no"));
 				qna.setuId(objRs.getString("uId"));
 				qna.setGoodsCode(objRs.getString("goodsCode"));
@@ -191,9 +217,5 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	
-
-	
-	
 
 }

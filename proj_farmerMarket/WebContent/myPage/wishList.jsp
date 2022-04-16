@@ -1,8 +1,11 @@
+<%@page import="pack_Goods.GoodsDao"%>
+<%@page import="pack_Goods.GoodsBean"%>
 <%@page import="pack_MyPage.WishListBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" scope="request" />
 <%
 request.setCharacterEncoding("UTF-8");
 String uId = (String)session.getAttribute("uId_Session");
@@ -17,7 +20,7 @@ String uId = (String)session.getAttribute("uId_Session");
 <link rel="stylesheet" href="/style/style_Common.css">
 <link rel="stylesheet" href="/style/style_MyPage.css">
 <script src="/source/jquery-3.6.0.min.js"></script>
-<script src="/script/script_MyPage.js"></script>
+<script src="/script/script_myPage.js"></script>
 </head>
 <body>
 	<div id="wrap">
@@ -75,18 +78,26 @@ String uId = (String)session.getAttribute("uId_Session");
 									<td><strong>장바구니 담기</strong></td>
 									<td><strong>삭제</strong></td>
 								</tr>
+								<%
+								List<GoodsBean> list = myPageDao.selectWishList(uId);
+								for (int i = 0; i < list.size(); i++) {
 
+								%>
 								<tr>
-									<td><div id="images">이미지</div></td>
-									<td>상품명</td>
-									<td>1,000</td>
-									<td> <button>담기</button></td>
+									<td><div id="images">
+											<img src="/images<%=list.get(i).getGoodsImg()%>" alt="">
+										</div></td>
+									<td><%=list.get(i).getGoodsName()%></td>
+									<td><%=list.get(i).getGoodsPrice()%></td>
+									<td> <button id="#sendBasketBtn">담기</button></td>
 									<td>
 									<button type = "button">
 										<i class="fa fa-check"></i>
 									</button>
 									</td>
 								</tr>
+								<%}%>
+					
 							</tbody>
 						</table>
 					</div>

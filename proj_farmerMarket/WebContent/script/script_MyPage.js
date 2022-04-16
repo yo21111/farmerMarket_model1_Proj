@@ -176,6 +176,46 @@ $(function() {
 	});
 
 
+	//---------------------------------------------------------------------------
+	//---------------------------addrUpdate.jsp 시작----------------------------
+	//---------------------------------------------------------------------------
+
+	//새배송지 추가 등록버튼 클릭
+	$("form#addrFrm #addrInsBtn").click(function() {
+		if ($("#addrFrm input#addrInput1").val() == "") {
+			alert("검색버튼을 눌러 주소를 검색해주세요.");
+			return;
+		}
+
+		if ($("#addrFrm input#addrInput2").val() == "") {
+			alert("세부 주소를 입력해주세요.");
+			return;
+		}
+		
+		$("form#addrFrm").submit();
+	});
+
+	// action="modifyAddrProc"
+	
+	//삭제하기 버튼 클릭시
+	$("#addrListFrm #deleteBtn").click(function(){
+		$("#addrListFrm").attr("action", "/myPage/deleteAddrProc.jsp?proc=D");
+		$("#addrListFrm").submit();
+	});
+	
+	$(".addrTr input[type=checkbox]").click(function(){
+		let check = $(this).parent().next().next().next().html();
+		if(check != "") {
+			alert("기본 주소지입니다. 기본 주소지는 개인 정보 수정에서 수정해주세요.")
+			$(this).prop("checked", false);
+		}
+	});
+	
+	//---------------------------------------------------------------------------
+	//---------------------------addrUpdate.jsp 끝----------------------------
+	//---------------------------------------------------------------------------
+	
+
 });
 
 

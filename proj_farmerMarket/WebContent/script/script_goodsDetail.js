@@ -22,7 +22,7 @@ $(function() {
 			$(".cntBtn>input").val(cnt);
 
 			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
-			$("span.goods_price").text((price * cnt).toLocaleString());
+			$("span.goods_price").text((price * cnt).toLocaleString() + "원");
 		}
 	});
 
@@ -32,7 +32,7 @@ $(function() {
 			$(".cntBtn>input").val(cnt);
 
 			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
-			$("span.goods_price").text((price * cnt).toLocaleString());
+			$("span.goods_price").text((price * cnt).toLocaleString() + "원");
 		}
 	});
 	////////////////////////////////////////////////////////////////////////////
@@ -42,20 +42,8 @@ $(function() {
 	////////////////////////////////////////////////////////////////////////////
 	//////////////////////////// 추가한 내용 시작 ////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////
-	
-	// 천단위 기호 붙여주기 - td.goods_price
-	$("td.goods_price").each(function(i, v) {
-		let price = parseInt($("td.goods_price").text());
-		price = price.toLocaleString();
-		$(this).text(price);
-	});
 
-	// 천단위 기호 붙여주기 - span.goods_price
-	$("span.goods_price").each(function(i, v) {
-		let price = parseInt($("td#totalPrice input").val());
-		price = price.toLocaleString();
-		$(this).text(price);
-	});
+
 
 
 
@@ -273,25 +261,52 @@ $(function() {
 
 
 	// 후기게시판 펼치기
-	$("#review>tbody td").click(function() {
-		if ($(".hiddenRivew").css("display") == "none") {
-			$(".hiddenRivew").show();
+	$("#review>tbody tr.hiddenRivewTitle").click(function() {
+		if ($(this).next().css("display") == "none") {
+			$(this).next().css("display", "table-row");
 		} else {
-			$(".hiddenRivew").hide();
+			$(this).next().css("display", "none");
 		}
 	});
 
 
 
 	// QnA게시판 펼치기
-	$("#qaTbl>tbody td").click(function() {
-		if ($(".hiddenRivew").css("display") == "none") {
-			$(".hiddenRivew").show();
+	$("#qaTbl>tbody tr.hiddenRivewTitle").click(function() {
+		if ($(this).next().css("display") == "none") {
+			$(this).next().css("display", "table-row");
 		} else {
-			$(".hiddenRivew").hide();
+			$(this).next().css("display", "none");
+		}
+	});
+
+	// 장바구니 버튼 기능 시작
+
+	$("#basketBtn").click(function() {
+		let uSession = $(this).next().val();
+		//alert(uSession);
+		let basketChk = $(this).next().next().val();
+		//alert(basketChk);
+
+		if (uSession == "null") {
+			alert("로그인이 필요한 서비스입니다.");
+			let goodsCode = $("td#hiddenTd input").val();
+			let to = "/goods/goods_detail.jsp";
+			let url = "/member/login.jsp?to=" + to + "&with=" + goodsCode;
+			location.href = url;
+		} else if (basketChk == "true") {
+			$("#basketFrm").submit();
+		} else {
+			alert("이미 장바구니에담긴 상품입니다.");
 		}
 	});
 
 
+	// 금액 기호 표시
+	$(".price").each(function(i, v) {
+		let price = parseInt($("td#totalPrice input").val().replace(/,/g, ''));
+		price = price.toLocaleString() + "원";
+		$(this).text(price);
+	});
 
 });

@@ -8,8 +8,13 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
+String uId = (String)session.getAttribute("uId_Session");
+
 String goodsCode = (String) request.getParameter("goodsCode");
 GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
+
+//true : 사용 가능, false : 사용 불가(중복)
+boolean result = goodsDao.checkBasket(goodsCode);
 
 char category = goodsCode.charAt(0);
 String cate = "";
@@ -59,84 +64,109 @@ if (category == 'M') {
 				<div id="goods_detail" class="dFlex">
 
 					<div id="detailImg">
-						<img src="/images<%=gBean.getGoodsImg()%>" alt="과일">
+						<img src="/images<%=gBean.getGoodsImg()%>"
+							alt="<%=gBean.getGoodsName()%>">
 					</div>
-					<div id="detail_info">
 
-						<!-- ##### 가격테이블 ######-->
-						<table>
-							<tbody>
-								<tr>
-									<td id="hiddenTd"><input type="hidden"
-										value="<%=goodsCode%>"></td>
-								</tr>
-								<tr>
-									<td colspan="2" class="tdLine">
-										<h1>
-											[<%=cate%>]
-											<%=gBean.getGoodsName()%>
-											<%=gBean.getGoodsWeight()%>
-											(<%=gBean.getPackType()%>)
-										</h1>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" id="goods_catch" class="goods_txt tdLine">
-										<%=gBean.getGoodsCatch()%>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" class="goods_price"><%=gBean.getGoodsPrice()%>
-									</td>
-								</tr>
-								<tr>
-									<td class="goods_txt tdLine">판매단위</td>
-									<td class="tdLine"><%=gBean.getUnitType()%></td>
-								</tr>
-								<tr>
-									<td class="goods_txt">중량/용량</td>
-									<td><%=gBean.getGoodsWeight()%></td>
-								</tr>
-								<tr>
-									<td class="goods_txt">배송구분</td>
-									<td><%=gBean.getDeliType()%></td>
-								</tr>
-								<tr>
-									<td class="goods_txt">포장타입</td>
-									<td><%=gBean.getPackType()%></td>
-								</tr>
-								<tr>
-									<td class="goods_txt">구매수량</td>
-									<td>
-										<div class="cntBtn">
-											<button type="button" id="cntMinus">-</button>
-											<input type="text" value="1" readonly>
-											<button type="button" id="cntPlus">+</button>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2" id="totalPrice">총 상품금액 : <span
-										class="goods_price"></span> <input type="hidden"
-										value="<%=gBean.getGoodsPrice()%>" />
-									</td>
-								</tr>
-								<tr>
-									<td class="goods_btnArea"><a href="/myPage/wishList.jsp">
-											<i class="fa fa-fw fa-heart"></i>
-									</a></td>
-									<td class="goods_btnArea"><a
-										href="/goods/goods_basket.jsp">
-											<button type="button">장바구니 담기</button>
-									</a></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<!-- div#detail_info -->
+					<form action="/goods/goods_basketProc.jsp" id="basketFrm" method="get">
+						<div id="detail_info">
+
+							<!-- ##### 가격테이블 ######-->
+							<table>
+								<tbody>
+									<tr>
+										<td id="hiddenTd"><input type="hidden"
+											value="<%=goodsCode%>"></td>
+									</tr>
+									<tr>
+										<td colspan="2" class="tdLine">
+											<h1>
+												[<%=cate%>]
+												<%=gBean.getGoodsName()%>
+												<%=gBean.getGoodsWeight()%>
+												(<%=gBean.getPackType()%>)
+											</h1>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" id="goods_catch" class="goods_txt tdLine">
+											<%=gBean.getGoodsCatch()%>
+										</td>
+									</tr>
+									<%
+									int goodsPrice = gBean.getGoodsPrice();
+									int eventRate = gBean.getEventRate();
+									if (eventRate > 0) {
+									%>
+									<tr>
+										<td colspan="2" class="goods_price price hidPrice"><%=goodsPrice%></td>
+									</tr>
+
+									<tr>
+										<td colspan="2" class="hPrice price"><%=goodsPrice - goodsPrice * eventRate / 100%></td>
+									</tr>
+									<%
+									} else {
+									%>
+									<tr>
+										<td colspan="2" class="goods_price price"><%=goodsPrice%></td>
+									</tr>
+									<%
+									}
+									%>
+									<tr>
+										<td class="goods_txt tdLine">판매단위</td>
+										<td class="tdLine"><%=gBean.getUnitType()%></td>
+									</tr>
+									<tr>
+										<td class="goods_txt">중량/용량</td>
+										<td><%=gBean.getGoodsWeight()%></td>
+									</tr>
+									<tr>
+										<td class="goods_txt">배송구분</td>
+										<td><%=gBean.getDeliType()%></td>
+									</tr>
+									<tr>
+										<td class="goods_txt">포장타입</td>
+										<td><%=gBean.getPackType()%></td>
+									</tr>
+									<tr>
+										<td class="goods_txt">구매수량</td>
+										<td>
+											<div class="cntBtn">
+												<button type="button" id="cntMinus">-</button>
+												<input type="text" name="goodsCnt" value="1" readonly>
+												<button type="button" id="cntPlus">+</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="2" id="totalPrice">총 상품금액 : <span
+											class="goods_price price"></span> <input type="hidden"
+											value="<%=gBean.getGoodsPrice()%>" />
+										</td>
+									</tr>
+									<tr>
+										<td class="goods_btnArea"><a href="/myPage/wishList.jsp">
+												<i class="fa fa-fw fa-heart"></i>
+										</a></td>
+										<td class="goods_btnArea"><a
+											href="#" id="basketA">
+												<button id="basketBtn" type="button">장바구니 담기</button> <input type="hidden"
+												value="<%=uId%>" name="uId_Session"> <input
+												type="hidden" value="<%=result%>">
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+							<input type="hidden" value="<%=eventRate%>">
+						</div>
+						<!-- div#detail_info -->
+						<input type="hidden" name="goodsCode" value="<%=goodsCode%>">
+					</form>
+
 				</div>
 				<!-- div#goods_detail -->
-
 				<!-- #########큌메뉴########## -->
 				<div id="goods_contents">
 					<nav id="quickmenu">
@@ -210,11 +240,11 @@ if (category == 'M') {
 											- 배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이페이지 내 <span>1:1문의</span>에
 											남겨주세요.
 										</p></th>
-										<!--  구현 대기중
+
 									<th class="reviewHead"><select>
 											<option value="recent">최근 등록일순</option>
 											<option value="view">조회많은순</option>
-									</select></th>-->
+									</select></th>
 								</tr>
 								<tr>
 									<th class="thTit">번호</th>
@@ -225,52 +255,54 @@ if (category == 'M') {
 								</tr>
 							</thead>
 							<tbody>
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
-<!-- //////////////////////////////////////////후기게시판 반복 시작////////////////////////////////////////////// -->							
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
+								<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								<!-- //////////////////////////////////////////후기게시판 반복 시작////////////////////////////////////////////// -->
+								<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 								<%
 								List<GoodsCommentsBean> list = goodsDao.selectGoodsCmtList(goodsCode);
-								
+
 								if (list.size() == 0) {
-									%>
-									<tr>
-										<td id="notFoundTd" colspan="5">아직 작성된 후기가 없습니다.</td>
-									</tr>
-									<%
+								%>
+								<tr>
+									<td id="notFoundTd" colspan="5">아직 작성된 후기가 없습니다.</td>
+								</tr>
+								<%
 								} else {
-								for(int i = 0; i < list.size(); i++) {
+								for (int i = 0; i < list.size(); i++) {
 									GoodsCommentsBean cBean = list.get(i);
 									String fileName = cBean.getFileRName_c();
 								%>
-									<tr>
-										<td><%=cBean.getNo() %></td>
-										<td><%=cBean.getTitle_c() %></td>
-										<td><%=cBean.getuId() %></td>
-										<td><%=cBean.getWriteTime_c() %></td>
-										<td><%=cBean.getView_cnt_c() %></td>
-									</tr>
-									<tr>
-										<td colspan="5" class="hiddenRivew">
-											<div>
-												<input type="text" readonly value="<%=cBean.getTitle_c()%>">
-											</div>
-											<%if (fileName != null) { %>
-											<div>
-												<img src="/fileUpload/<%=fileName %>" alt="후기 이미지" />
-											</div>
-											<%} %>
-											<div>
-												<textarea wrap="hard" readonly><%=cBean.getContetns_c() %></textarea>
-											</div>
-										</td>
-									</tr>
+								<tr class="hiddenRivewTitle">
+									<td><%=cBean.getNo()%></td>
+									<td><%=cBean.getTitle_c()%></td>
+									<td><%=cBean.getuId()%></td>
+									<td><%=cBean.getWriteTime_c()%></td>
+									<td><%=cBean.getView_cnt_c()%></td>
+								</tr>
+								<tr class="hiddenTr">
+									<td colspan="5" class="hiddenRivew">
+										<div>
+											<input type="text" readonly value="<%=cBean.getTitle_c()%>">
+										</div> <%
+ if (fileName != null) {
+ %>
+										<div class="img">
+											<img src="/fileUpload/<%=fileName%>" alt="후기 이미지" />
+										</div> <%
+ }
+ %>
+										<div>
+											<textarea wrap="hard" readonly><%=cBean.getContetns_c()%></textarea>
+										</div>
+									</td>
+								</tr>
 								<%
-									}
+								}
 								}
 								%>
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->							
-<!-- //////////////////////////////////////////후기게시판 반복 끝//////////////////////////////////////////////// -->							
-<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->			
+								<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+								<!-- //////////////////////////////////////////후기게시판 반복 끝//////////////////////////////////////////////// -->
+								<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 							</tbody>
 							<tfoot>
 								<tr>
@@ -323,45 +355,58 @@ if (category == 'M') {
 								</tr>
 							</thead>
 							<tbody>
+								<!-- /////////////////////////////////////// 반복문 시작 /////////////////////////////////////// -->
+								<%
+								List<GoodsQnABean> qList = goodsDao.selectGoodsQnaList(goodsCode);
+
+								if (qList.size() == 0) {
+								%>
 								<tr>
-									<td>4</td>
-									<td>상품 상태에 관해 질문이 있습니다.</td>
-									<td>이*유</td>
-									<td>2022-03-23</td>
+									<td id="notFoundTd" colspan="4">아직 작성된 문의가 없습니다.</td>
 								</tr>
-								<tr>
+								<%
+								} else {
+								for (int i = 0; i < qList.size(); i++) {
+									GoodsQnABean qBean = qList.get(i);
+									String fileName = qBean.getFileRName_q();
+								%>
+								<tr class="hiddenRivewTitle">
+									<td><%=qBean.getNo()%></td>
+									<td><%=qBean.getTitle_q()%></td>
+									<td><%=qBean.getuId()%></td>
+									<td><%=qBean.getWriteTime_q()%></td>
+								</tr>
+								<tr class="hiddenTr">
 									<td colspan="4" class="hiddenRivew">
-										<div id="customerQ">
-											<h1>Q. 상품이 녹아서 배송된것 같습니다.</h1>
-											<p>안녕하세요 오늘 상품을 받아보니 냉동제품인데 녹아서 배송이 되었더라고요 교환 가능할까요?</p>
+										<div class="customerQ">
+											<h1>
+												Q.
+												<%=qBean.getTitle_q()%></h1>
+											<%
+											if (fileName != null) {
+											%>
+											<div class="img">
+												<img src="/fileUpload/<%=fileName%>" alt="후기 이미지" />
+											</div>
+											<%
+											}
+											%>
+											<textarea wrap="hard" readonly><%=qBean.getContetns_q()%></textarea>
 										</div>
-										<div id="managerA">
-											<h1>A. Love food, Love life!</h1>
+										<div class="managerA">
+											<h1>A. 답변 준비중입니다.</h1>
 											<p>
-												안녕하세요. farmersmarket 입니다 <br> 배송에 문제를 드려 죄송합니다. 신속하게
-												교체해 드리겠습니다.
+												안녕하세요. FarmerMarket 입니다 <br> 질문주신 내용을 바탕으로 답변을 준비중에
+												있습니다. <br> 빠른 시일 안에 답변드리도록 하겠습니다.
 											</p>
 										</div>
 									</td>
 								</tr>
-								<tr>
-									<td>3</td>
-									<td>할인 기간에 대해서</td>
-									<td>김*조</td>
-									<td>2022-01-05</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>환불</td>
-									<td>허*수</td>
-									<td>2021-08-27</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>정기배송 신청 여부</td>
-									<td>김*국</td>
-									<td>2020-05-05</td>
-								</tr>
+								<%
+								}
+								}
+								%>
+								<!-- /////////////////////////////////////// 반복문 끝 /////////////////////////////////////// -->
 							</tbody>
 							<tfoot>
 								<tr>
