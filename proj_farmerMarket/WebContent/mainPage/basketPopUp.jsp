@@ -11,6 +11,9 @@ GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
 
 //true : 사용 가능, false : 사용 불가(중복)
 boolean result = goodsDao.checkBasket(goodsCode);
+
+int eventRate = gBean.getEventRate();
+int salePrice = gBean.getGoodsPrice() - gBean.getGoodsPrice() * eventRate / 100;
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -28,8 +31,8 @@ boolean result = goodsDao.checkBasket(goodsCode);
 				장바구니 담기
 			</div>
 			<div>
-				<div id="name">
-					<%=gBean.getGoodsName() + " (" + gBean.getGoodsWeight() + ")" %>
+				<div id="name" class="dFlex">
+					<div id="nameLeft"><%=gBean.getGoodsName() + " (" + gBean.getGoodsWeight() + ")" %></div><div id="nameRight"><%=eventRate %>% 할인 중</div>
 				</div>
 			</div>
 
@@ -46,7 +49,17 @@ boolean result = goodsDao.checkBasket(goodsCode);
 			
 			<div id="total" class="dFlex">
 				<div>합계</div>
-				<div id="totalPrice" class="price"><%=gBean.getGoodsPrice() %></div>
+				<%
+				if (eventRate > 0) {
+					%>
+					<div id="totalPrice" class="price"><%=salePrice %></div>
+					<%
+				} else {
+					%>
+					<div id="totalPrice" class="price"><%=gBean.getGoodsPrice() %></div>
+					<%
+				}
+				%>
 			</div>
 			
 			<div id="btnArea" class="dFlex">
