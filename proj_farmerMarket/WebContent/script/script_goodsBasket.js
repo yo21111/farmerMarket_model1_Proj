@@ -267,7 +267,20 @@ $(function() {
 
 
 
+	// 장바구니 전체선택 버튼
+	$(".allClickBtn").click(function() {
+		let boolChk = $("input#chkAll1").prop("checked");
+		if (boolChk) {
+			$("input#chkAll1").prop("checked", false);
+			$(".basketChk input[type=checkbox]").prop("checked", false);
+			$("input#chkAll2").prop("checked", false);
+		} else {
+			$("input#chkAll1").prop("checked", true);
+			$(".basketChk input[type=checkbox]").prop("checked", true);
+			$("input#chkAll2").prop("checked", true);
+		}
 
+	});
 
 
 
@@ -325,7 +338,7 @@ $(function() {
 	// 선택삭제 버튼 선택시 실행
 	$(".selClickBtn").click(function() {
 		let chk = confirm("선택하신 물품을 삭제하시겠습니까?");
-		if(!chk) {
+		if (!chk) {
 			return;
 		}
 
