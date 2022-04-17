@@ -27,20 +27,29 @@ public class MyPageDao {
 
 	// 주문내역 메서드
 	// 주문내역 기간별 조회 기능 추가해야됨
-	public List<GoodsBean> selectOrderList(String uId) {
-		List<GoodsBean> list = new ArrayList<>();
+	public List<OrderListBean> selectOrderList(String uId, String where) {
+		List<OrderListBean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
-			sql = "select g.goodsImg, g.goodsName, g.goodsPrice  from goods g left join orderList on g.goodsCode = orderList.goodsCode where orderList.uid =?";
+			sql = "select buyTime, goodsCode, goodsCnt from orderList where uid =?";
+			
+			if(!where.equals("") || where != null) {
+				String sql2 =" and buyTime like ‘"+where+"%’";
+				sql += sql2;
+			}
+			System.out.println(sql);
+			
+			
 			objPStmt = objConn.prepareStatement(sql);
 			objPStmt.setString(1, uId);
 			objRs = objPStmt.executeQuery();
 
 			while (objRs.next()) {
-				GoodsBean goods = new GoodsBean();
-				goods.setGoodsImg(objRs.getString("goodsImg"));
-				goods.setGoodsName(objRs.getString("goodsName"));
-				goods.setGoodsPrice(objRs.getInt("goodsPrice"));
+				OrderListBean goods = new OrderListBean();
+				goods.setuId(objRs.getString("uId"));
+				goods.setGoodsCode(objRs.getString("goodsCode"));
+				goods.setGoodsCnt(objRs.getInt("goodsCnt"));
+				goods.setBuyTime(objRs.getString("buyTime"));
 				list.add(goods);
 			}
 		} catch (Exception e) {

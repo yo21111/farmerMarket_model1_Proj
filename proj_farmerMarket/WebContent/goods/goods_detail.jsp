@@ -96,6 +96,8 @@ if (category == 'M') {
 									<%
 									int goodsPrice = gBean.getGoodsPrice();
 									int eventRate = gBean.getEventRate();
+									
+									int salePrice = goodsPrice - goodsPrice * eventRate / 100;
 									if (eventRate > 0) {
 									%>
 									<tr>
@@ -103,7 +105,7 @@ if (category == 'M') {
 									</tr>
 
 									<tr>
-										<td colspan="2" class="hPrice price"><%=goodsPrice - goodsPrice * eventRate / 100%></td>
+										<td colspan="2" class="hPrice salePrice"><%=salePrice%></td>
 									</tr>
 									<%
 									} else {

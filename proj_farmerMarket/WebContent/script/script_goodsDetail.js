@@ -312,5 +312,12 @@ $(function() {
 		price = price.toLocaleString() + "원";
 		$(this).text(price);
 	});
+	
+	
+	$(".salePrice").each(function(i, v) {
+		let price = parseInt($("td.salePrice").text().replace(/,/g, ''));
+		price = price.toLocaleString() + "원";
+		$(this).text(price);
+	});
 
 });

@@ -125,7 +125,7 @@
 						</div>
 
 						<div class="goodsBtn">
-								<i class="fa fa-fw fa-shopping-cart"></i>
+							<i class="fa fa-fw fa-shopping-cart"></i>
 						</div>
 
 						<div class="hidden">
@@ -135,20 +135,17 @@
 							[<%=title[i]%>]
 							<%=goodsName%></div>
 						<div class="goodsCatch"><%=goodsCatch%></div>
-						<div class="goodsPrice">
-							<%
-							if (eventRate != 0) {
-							%>
-							<span class="salePer"><%=eventRate%>%</span>
-							<%
-							}
-							%>
-							<span class="price"><%=goodsPrice%></span>
-						</div>
 						<%
 						if (eventRate != 0) {
 						%>
-						<div class="beforePrice"><%=salePrice%></div>
+						<div class="goodsPrice">
+							<span class="salePer"><%=eventRate%>%</span> <span class="price"><%=salePrice%></span>
+						</div>
+						<div class="beforePrice"><%=goodsPrice%></div>
+						<%
+						} else if (eventRate == 0) {
+						%>
+						<div class="goodsPrice"><span class="price"><%=goodsPrice%></span></div>
 						<%
 						}
 						%>

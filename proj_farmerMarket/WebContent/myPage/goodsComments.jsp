@@ -18,7 +18,7 @@ String uId = (String) session.getAttribute("uId_Session");
 <link rel="stylesheet" href="/style/style_Common.css">
 <link rel="stylesheet" href="/style/style_MyPage.css">
 <script src="/source/jquery-3.6.0.min.js"></script>
-<script src="/script/script_MyPage.js"></script>
+<script src="/script/script_myPage.js"></script>
 </head>
 <body>
 	<%

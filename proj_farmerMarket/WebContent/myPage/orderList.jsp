@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="pack_Goods.GoodsDao"%>
 <%@page import="pack_Goods.GoodsBean"%>
 <%@page import="pack_MyPage.OrderListBean"%>
@@ -24,6 +25,16 @@ String uId = (String) session.getAttribute("uId_Session");
 <script src="/script/script_myPage.js"></script>
 </head>
 <body>
+<%
+if(uId == null) {
+%>
+	<script>
+		alert("로그인 이후에 사용 가능한 서비스입니다.");
+		location.href="/member/login.jsp";
+	</script>
+<%	
+}
+%>
 	<div id="wrap">
 		<!-- 마이페이지를 누르면 제일 먼저 orderList 화면이 나와야 함 -->
 		<jsp:include page="/ind/headerTmp.jsp" />
@@ -58,11 +69,11 @@ String uId = (String) session.getAttribute("uId_Session");
 						<p>*지난 3년간의 주문 내역 조회가 가능합니다.</p>
 					</div>
 					<div id="select">
-						<select name="" id="">
+						<select name="where" id="yearSelect">
 							<option value="">전체 기간</option>
-							<option value="">2022년</option>
-							<option value="">2021년</option>
-							<option value="">2020년</option>
+							<option value="2022">2022년</option>
+							<option value="2021">2021년</option>
+							<option value="2020’">2020년</option>
 						</select>
 					</div>
 				</div>
@@ -75,21 +86,28 @@ String uId = (String) session.getAttribute("uId_Session");
 						<table id="orderListTbl">
 							<tbody>
 								<tr>
-									<td><strong>이미지</strong></td>
 									<td><strong>상품명</strong></td>
+									<td><strong>주문일자</strong></td>
 									<td><strong>가격</strong></td>
 								</tr>
 								<%
-								List<GoodsBean> list = myPageDao.selectOrderList(uId);
-								for (int i = 0; i < list.size(); i++) {
+								String where = request.getParameter("where");
+								if(where == null) {where = "";}
 								
+								List<OrderListBean> list = myPageDao.selectOrderList(uId, where);
+								for (int i = 0; i < list.size(); i++) {
+									OrderListBean oBean = list.get(i); 
+									GoodsBean gBean = goodsDao.selectGoodsOne(oBean.getGoodsCode());
+									
+									SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
+									String buyTime = df.format(oBean.getBuyTime());
 								%>
 								<tr>
 									<td><div id="images">
-											<img src="/images<%=list.get(i).getGoodsImg()%>" alt="">
+										<%=gBean.getGoodsName() + (gBean.getDeliType()+", "+ gBean.getGoodsWeight()) + "  " + oBean.getGoodsCnt()+gBean.getUnitType()%>
 										</div></td>
-									<td><%=list.get(i).getGoodsName()%></td>
-									<td><%=list.get(i).getGoodsPrice()%></td>
+									<td><%=buyTime%></td>
+									<td><%=gBean.getGoodsPrice()%></td>
 								</tr>
 								<%}%>
 							</tbody>
