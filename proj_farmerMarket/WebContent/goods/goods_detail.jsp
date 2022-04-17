@@ -143,10 +143,23 @@ if (category == 'M') {
 										</td>
 									</tr>
 									<tr>
+									<% 
+									if (eventRate > 0) {
+										%>
+										<td colspan="2" id="totalPrice">총 상품금액 : <span
+											class="salePrice"></span> <input type="hidden"
+											value="<%=salePrice%>" />
+										</td>										
+										<%
+									} else {
+										%>
 										<td colspan="2" id="totalPrice">총 상품금액 : <span
 											class="goods_price price"></span> <input type="hidden"
 											value="<%=gBean.getGoodsPrice()%>" />
 										</td>
+										<%
+									}
+									%>
 									</tr>
 									<tr>
 										<td class="goods_btnArea"><a href="/myPage/wishList.jsp">

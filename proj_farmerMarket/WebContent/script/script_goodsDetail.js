@@ -308,6 +308,12 @@ $(function() {
 
 	// 금액 기호 표시
 	$(".price").each(function(i, v) {
+		let price = parseInt($("td.goods_price ").text().replace(/,/g, ''));
+		price = price.toLocaleString() + "원";
+		$(this).text(price);
+	});
+
+	$(".salePrice").each(function(i, v) {
 		let price = parseInt($("td#totalPrice input").val().replace(/,/g, ''));
 		price = price.toLocaleString() + "원";
 		$(this).text(price);
