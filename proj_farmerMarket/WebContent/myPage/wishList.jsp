@@ -26,6 +26,16 @@ String uId = (String) session.getAttribute("uId_Session");
 
 </head>
 <body>
+<%
+	if(uId == null) {
+		%>
+			<script>
+				alert("로그인이 필요한 서비스입니다!");
+				location.href="/member/login.jsp";
+			</script>
+		<%
+	}
+%>
 	<div id="wrap">
 		<!-- 마이페이지를 누르면 제일 먼저 orderList 화면이 나와야 함 -->
 		<jsp:include page="/ind/headerTmp.jsp" />
@@ -83,29 +93,40 @@ String uId = (String) session.getAttribute("uId_Session");
 								</tr>
 								<%
 								List<GoodsBean> list = myPageDao.selectWishList(uId);
-								for (int i = 0; i < list.size(); i++) {
+								if (list.size() == 0) {
+									%>
+										<tr>
+											<td id="notFound" colspan="5">
+												아직 찜하신 상품이 없습니다!
+											</td>
+										</tr>									
+									<%
+								} else {
+									for (int i = 0; i < list.size(); i++) {
+										GoodsBean gBean = list.get(i);
+										int salePrice = gBean.getGoodsPrice() - gBean.getGoodsPrice() * gBean.getEventRate() / 100;
 								%>
 								<tr>
-									<td><div id="images">
-											<img src="/images<%=list.get(i).getGoodsImg()%>" alt="">
+									<td><div id="images" class="dFlex">
+											<img src="/images<%=gBean.getGoodsImg()%>" alt="<%=gBean.getGoodsName()%>">
 										</div></td>
-									<td><%=list.get(i).getGoodsName()%></td>
-									<td><%=list.get(i).getGoodsPrice()%></td>
-									
-										
-										<td>
-											<button type="submit" id="sendBasketBtn">담기</button>
-										</td>
+									<td><%=gBean.getGoodsName()%></td>
+									<td class="price"><%=salePrice%></td>
+
+
 									<td>
-								 <form action="" id="deleteWishFrm" method="get">
-								 	<input type="hidden" id="goodsCode"  name="goodsCode" value="<%=list.get(i).getGoodsCode()%>"> 
-									<button type="button" id="deleteWishBtn">
-										<i class="fa fa-check"></i>
-									</button>
-								 </form>
+										<button type="button" id="sendBasketBtn">담기</button>
+									</td>
+									<td>
+										<form id="deleteWishFrm" method="post">
+											<input type="hidden" id="goodsCode" name="goodsCode"
+												value="<%=gBean.getGoodsCode()%>">
+											<button type="button" id="deleteWishBtn">X</button>
+										</form>
 									</td>
 								</tr>
-								<%}%>
+								<%}
+								}%>
 
 							</tbody>
 						</table>

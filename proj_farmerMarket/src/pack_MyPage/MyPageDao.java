@@ -37,7 +37,6 @@ public class MyPageDao {
 				String sql2 =" and buyTime like '"+where+"%'";
 				sql += sql2;
 			}
-			System.out.println(sql);
 			
 			
 			objPStmt = objConn.prepareStatement(sql);
@@ -87,7 +86,59 @@ public class MyPageDao {
 		}
 		return list;
 	}
+	
+	// 상품찜하기 - insert
+	public boolean insertWishList(String uId, String goodsCode) {
+		boolean flag = false;
+		try {
+			objConn = pool.getConnection();
+			sql = "insert into wishList (uId, goodsCode) values(?,?)";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objPStmt.setString(2, goodsCode);
 
+			if (objPStmt.executeUpdate() == 1) {
+				flag = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return flag;
+	}
+	
+	// 찜한목록 중복확인
+	public boolean checkWish(String goodsCode) {
+		int chkRes = 0;
+		String sql = "";
+
+		try {
+			objConn = pool.getConnection();
+			// goodsCode에 해당하는 갯수 확인
+			sql = "select count(*) from wishList where goodsCode=?";
+
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, goodsCode);
+
+			objRs = objPStmt.executeQuery();
+
+			if (objRs.next()) {
+				chkRes = objRs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt, objRs);
+		}
+
+		// 0이 반환되면 중복 없음
+		return chkRes == 0 ? true : false;
+	}
+	
+	
 	// 찜한 목록 삭제 메서드
 	public boolean deleteWishList(String goodsCode) {
 		int rs = 0;

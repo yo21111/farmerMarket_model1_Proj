@@ -5,6 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" scope="request" />
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
 <%
 request.setCharacterEncoding("UTF-8");
 
@@ -13,8 +14,10 @@ String uId = (String)session.getAttribute("uId_Session");
 String goodsCode = (String) request.getParameter("goodsCode");
 GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
 
-//true : 사용 가능, false : 사용 불가(중복)
+// 장바구니 중복여부 -> true : 사용 가능, false : 사용 불가(중복)
 boolean result = goodsDao.checkBasket(goodsCode);
+// 찜한목록 중복여부 -> true : 사용 가능, false : 사용 불가(중복)
+boolean wishListResult = myPageDao.checkWish(goodsCode);
 
 char category = goodsCode.charAt(0);
 String cate = "";
@@ -162,14 +165,17 @@ if (category == 'M') {
 									%>
 									</tr>
 									<tr>
-										<td class="goods_btnArea"><a href="/myPage/wishList.jsp">
+										<td class="goods_btnArea">
+											<button id="wishListBtn" type="button">
 												<i class="fa fa-fw fa-heart"></i>
-										</a></td>
+											</button>
+										</td>
 										<td class="goods_btnArea"><a
 											href="#" id="basketA">
 												<button id="basketBtn" type="button">장바구니 담기</button> <input type="hidden"
 												value="<%=uId%>" name="uId_Session"> <input
 												type="hidden" value="<%=result%>">
+												<input type="hidden" value="<%=wishListResult%>">
 										</a></td>
 									</tr>
 								</tbody>

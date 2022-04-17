@@ -280,8 +280,30 @@ $(function() {
 		}
 	});
 
-	// 장바구니 버튼 기능 시작
+	//찜하기 버튼 기능 시작
+	$("#wishListBtn").click(function() {
+		let uSession = $("#basketBtn").next().val();
+		let wishChk = $("#basketBtn").next().next().next().val();
 
+		let chk = confirm("이 물건을 찜목록에 추가하시겠습니까?");
+
+		if (chk) {
+			if (uSession == "null") {
+				alert("로그인이 필요한 서비스입니다.");
+				let goodsCode = $("td#hiddenTd input").val();
+				let to = "/goods/goods_detail.jsp";
+				let url = "/member/login.jsp?to=" + to + "&with=" + goodsCode;
+				location.href = url;
+			} else if (wishChk == "true") {
+				$("#basketFrm").attr("action", "/goods/insertWishProc.jsp");
+				$("#basketFrm").submit();
+			}  else if (wishChk == "false") {
+				alert("이미 찜해 놓은 상품입니다.");
+			}
+		}
+	});
+
+	// 장바구니 버튼 기능 시작
 	$("#basketBtn").click(function() {
 		let uSession = $(this).next().val();
 		//alert(uSession);
@@ -318,8 +340,8 @@ $(function() {
 		price = price.toLocaleString() + "원";
 		$(this).text(price);
 	});
-	
-	
+
+
 	$(".salePrice").each(function(i, v) {
 		let price = parseInt($("td.salePrice").text().replace(/,/g, ''));
 		price = price.toLocaleString() + "원";

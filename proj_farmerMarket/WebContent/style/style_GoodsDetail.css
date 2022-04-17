@@ -126,6 +126,7 @@ form#basketFrm {
 	height: 50px;
 	line-height: 50px;
 	font-size: 25px;
+	color: red;
 	/* border: 1px solid #000; */
 }
 

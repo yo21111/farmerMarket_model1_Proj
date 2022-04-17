@@ -3,6 +3,39 @@
  */
 
 $(function() {
+
+	//---------------------------------------------------------------------------
+	//---------------------------wishList.jsp 시작-------------------------------
+	//---------------------------------------------------------------------------
+	//삭제하기 버튼 클릭시
+	$("#deleteWishBtn").click(function() {
+
+		let goodsCode = $("input#goodsCode").val();
+
+		let url = "/myPage/wishListDeleteProc.jsp?goodsCode=" + goodsCode;
+
+		$("#deleteWishFrm").attr("action", url);
+		$("#deleteWishFrm").submit();
+	});
+
+	//장바구니 담기 버튼 클릭시
+	$("#sendBasketBtn").click(function() {
+		let goodsCode = $("input#goodsCode").val();
+
+		let url = "/myPage/wishToBasketProc.jsp?goodsCode=" + goodsCode;
+		location.href = url;
+	});
+
+	//금액 표시하기
+	$(".price").each(function(i, v) {
+		let price = parseInt($(this).text().replace(/,/g, ''));
+		price = price.toLocaleString() + "원";
+		$(this).text(price);
+	});
+	//---------------------------------------------------------------------------
+	//---------------------------wishList.jsp 끝-------------------------------
+	//---------------------------------------------------------------------------
+
 	//---------------------------------------------------------------------------
 	//---------------------------update_info.jsp 시작--------------------------
 	//---------------------------------------------------------------------------
@@ -178,16 +211,16 @@ $(function() {
 	//---------------------------------------------------------------------------
 	//---------------------------orderList.jsp 시작----------------------------
 	//---------------------------------------------------------------------------
-		$("select#yearSelect").change(function(){
-			let value = $("select#yearSelect option:selected").val();
-			location.href="/myPage/orderList.jsp?where="+value;
-		});
-	
-	
+	$("select#yearSelect").change(function() {
+		let value = $("select#yearSelect option:selected").val();
+		location.href = "/myPage/orderList.jsp?where=" + value;
+	});
+
+
 	//---------------------------------------------------------------------------
 	//---------------------------orderList.jsp 끝----------------------------
 	//---------------------------------------------------------------------------
-	
+
 
 
 	//---------------------------------------------------------------------------
@@ -205,30 +238,30 @@ $(function() {
 			alert("세부 주소를 입력해주세요.");
 			return;
 		}
-		
+
 		$("form#addrFrm").submit();
 	});
 
 	// action="modifyAddrProc"
-	
+
 	//삭제하기 버튼 클릭시
-	$("#addrListFrm #deleteBtn").click(function(){
+	$("#addrListFrm #deleteBtn").click(function() {
 		$("#addrListFrm").attr("action", "/myPage/deleteAddrProc.jsp?proc=D");
 		$("#addrListFrm").submit();
 	});
-	
-	$(".addrTr input[type=checkbox]").click(function(){
+
+	$(".addrTr input[type=checkbox]").click(function() {
 		let check = $(this).parent().next().next().next().html();
-		if(check != "") {
+		if (check != "") {
 			alert("기본 주소지입니다. 기본 주소지는 개인 정보 수정에서 수정해주세요.")
 			$(this).prop("checked", false);
 		}
 	});
-	
+
 	//---------------------------------------------------------------------------
 	//---------------------------addrUpdate.jsp 끝----------------------------
 	//---------------------------------------------------------------------------
-	
+
 
 });
 
