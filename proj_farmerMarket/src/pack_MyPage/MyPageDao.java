@@ -66,7 +66,7 @@ public class MyPageDao {
 		try {
 
 			objConn = pool.getConnection();
-			sql = "select g.goodsImg, g.goodsName, g.goodsPrice  from goods g left join wishlist on g.goodsCode = wishlist.goodsCode where wishlist.uid =?";
+			sql = "select g.goodsImg, g.goodsName, g.goodsPrice, g.goodsCode from goods g left join wishlist on g.goodsCode = wishlist.goodsCode where wishlist.uid =?";
 			objPStmt = objConn.prepareStatement(sql);
 			objPStmt.setString(1, uId);
 			objRs = objPStmt.executeQuery();
@@ -76,6 +76,7 @@ public class MyPageDao {
 				goods.setGoodsImg(objRs.getString("goodsImg"));
 				goods.setGoodsName(objRs.getString("goodsName"));
 				goods.setGoodsPrice(objRs.getInt("goodsPrice"));
+				goods.setGoodsCode(objRs.getString("goodsCode"));
 
 				list.add(goods);
 			}

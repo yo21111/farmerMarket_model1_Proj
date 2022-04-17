@@ -1,14 +1,16 @@
+<%@page import="pack_Goods.BasketBean"%>
 <%@page import="pack_Goods.GoodsDao"%>
 <%@page import="pack_Goods.GoodsBean"%>
 <%@page import="pack_MyPage.WishListBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao" />
 <jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" scope="request" />
+
 <%
 request.setCharacterEncoding("UTF-8");
-String uId = (String)session.getAttribute("uId_Session");
+String uId = (String) session.getAttribute("uId_Session");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,6 +23,7 @@ String uId = (String)session.getAttribute("uId_Session");
 <link rel="stylesheet" href="/style/style_MyPage.css">
 <script src="/source/jquery-3.6.0.min.js"></script>
 <script src="/script/script_myPage.js"></script>
+
 </head>
 <body>
 	<div id="wrap">
@@ -81,7 +84,6 @@ String uId = (String)session.getAttribute("uId_Session");
 								<%
 								List<GoodsBean> list = myPageDao.selectWishList(uId);
 								for (int i = 0; i < list.size(); i++) {
-
 								%>
 								<tr>
 									<td><div id="images">
@@ -89,15 +91,22 @@ String uId = (String)session.getAttribute("uId_Session");
 										</div></td>
 									<td><%=list.get(i).getGoodsName()%></td>
 									<td><%=list.get(i).getGoodsPrice()%></td>
-									<td> <button id="#sendBasketBtn">담기</button></td>
+									
+										
+										<td>
+											<button type="submit" id="sendBasketBtn">담기</button>
+										</td>
 									<td>
-									<button type = "button">
+								 <form action="" id="deleteWishFrm" method="get">
+								 	<input type="hidden" id="goodsCode"  name="goodsCode" value="<%=list.get(i).getGoodsCode()%>"> 
+									<button type="button" id="deleteWishBtn">
 										<i class="fa fa-check"></i>
 									</button>
+								 </form>
 									</td>
 								</tr>
 								<%}%>
-					
+
 							</tbody>
 						</table>
 					</div>

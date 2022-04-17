@@ -78,8 +78,27 @@ div#goodsList {
 	text-align: left;
 	vertical-align: top;
 	padding: 10px 0;
-	height: 70px;
+	height: 35px;
 }
+
+
+
+#goodsList>table td.orgPrice span.orgPr {
+	text-decoration: line-through;
+	text-decoration-color: #ff0000;
+	color: #808080;
+}
+
+#goodsList>table td.orgPrice span.eventRate {
+	color: #f00;
+	font-size: 11px;
+	text-decoration: none;
+}
+
+#goodsList>table td.eventPrice {
+	font-size: 12px;
+}
+
 
 /* div#goodsList 끝 */
 
