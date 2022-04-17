@@ -10,7 +10,6 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String uId = (String) session.getAttribute("uId_Session");
-
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,16 +24,16 @@ String uId = (String) session.getAttribute("uId_Session");
 <script src="/script/script_myPage.js"></script>
 </head>
 <body>
-<%
-if(uId == null) {
-%>
+	<%
+	if (uId == null) {
+	%>
 	<script>
 		alert("로그인 이후에 사용 가능한 서비스입니다.");
-		location.href="/member/login.jsp";
+		location.href = "/member/login.jsp";
 	</script>
-<%	
-}
-%>
+	<%
+	}
+	%>
 	<div id="wrap">
 		<!-- 마이페이지를 누르면 제일 먼저 orderList 화면이 나와야 함 -->
 		<jsp:include page="/ind/headerTmp.jsp" />
@@ -88,28 +87,38 @@ if(uId == null) {
 								<tr>
 									<td><strong>상품명</strong></td>
 									<td><strong>주문일자</strong></td>
-									<td><strong>가격</strong></td>
+									<td><strong>구매수량 / 결제금액</strong></td>
 								</tr>
 								<%
 								String where = request.getParameter("where");
-								if(where == null) {where = "";}
-								
+								if (where == null) {
+									where = "";
+								}
+
 								List<OrderListBean> list = myPageDao.selectOrderList(uId, where);
+								if (list.size() == 0) {
+								%>
+								<tr>
+									<td colspan="3" id="notFound">해당 기간(<%=where %>년)에 대해 검색된 주문내역이 없습니다.</td>
+								</tr>
+								<%
+								} else {
 								for (int i = 0; i < list.size(); i++) {
-									OrderListBean oBean = list.get(i); 
+									OrderListBean oBean = list.get(i);
 									GoodsBean gBean = goodsDao.selectGoodsOne(oBean.getGoodsCode());
-									
-									SimpleDateFormat df = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분");
-									String buyTime = df.format(oBean.getBuyTime());
 								%>
 								<tr>
 									<td><div id="images">
-										<%=gBean.getGoodsName() + (gBean.getDeliType()+", "+ gBean.getGoodsWeight()) + "  " + oBean.getGoodsCnt()+gBean.getUnitType()%>
+											<%=gBean.getGoodsName() + (gBean.getDeliType() + ", " + gBean.getGoodsWeight()) + "  (단위 :"+gBean.getUnitType()+")"%>
 										</div></td>
-									<td><%=buyTime%></td>
-									<td><%=gBean.getGoodsPrice()%></td>
+									<td><%=oBean.getBuyTime()%></td>
+									<td><%=+ oBean.getGoodsCnt()
+									+ "개 / " + gBean.getGoodsPrice() * oBean.getGoodsCnt()%>원</td>
 								</tr>
-								<%}%>
+								<%
+								}
+								}
+								%>
 							</tbody>
 						</table>
 					</div>

@@ -361,15 +361,15 @@ table#orderListTbl td {
 }
 
 table#orderListTbl td:nth-child(1) {
-	width: 200px;
+	width: 500px;
 }
 
 table#orderListTbl td:nth-child(2) {
-	width: 600px;
+	width: 300px;
 }
 
 table#orderListTbl td:nth-child(3) {
-	width: 100px;
+	width: 200px;
 }
 
 /*회원탈퇴*/

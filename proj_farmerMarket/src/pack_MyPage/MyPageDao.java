@@ -31,10 +31,10 @@ public class MyPageDao {
 		List<OrderListBean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
-			sql = "select buyTime, goodsCode, goodsCnt from orderList where uid =?";
+			sql = "select buyTime, goodsCode, goodsCnt from orderList where uId =?";
 			
 			if(!where.equals("") || where != null) {
-				String sql2 =" and buyTime like ‘"+where+"%’";
+				String sql2 =" and buyTime like '"+where+"%'";
 				sql += sql2;
 			}
 			System.out.println(sql);
@@ -46,7 +46,7 @@ public class MyPageDao {
 
 			while (objRs.next()) {
 				OrderListBean goods = new OrderListBean();
-				goods.setuId(objRs.getString("uId"));
+				goods.setuId(uId);
 				goods.setGoodsCode(objRs.getString("goodsCode"));
 				goods.setGoodsCnt(objRs.getInt("goodsCnt"));
 				goods.setBuyTime(objRs.getString("buyTime"));
