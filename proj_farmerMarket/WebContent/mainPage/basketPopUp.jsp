@@ -6,7 +6,7 @@
 request.setCharacterEncoding("UTF-8");
 String uId = (String) session.getAttribute("uId_Session");
 
-String goodsCode = (String)request.getParameter("goodsCode");
+String goodsCode = (String) request.getParameter("goodsCode");
 GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
 
 //true : 사용 가능, false : 사용 불가(중복)
@@ -25,20 +25,26 @@ int salePrice = gBean.getGoodsPrice() - gBean.getGoodsPrice() * eventRate / 100;
 <link rel="stylesheet" href="/style/style_Common.css">
 </head>
 <body>
-	<form action="/mainPage/goods_basketProc.jsp" id="basketFrm" method="get">
+	<form action="/mainPage/goods_basketProc.jsp" id="basketFrm"
+		method="get">
 		<div id="popUp">
-			<div id="title">
-				장바구니 담기
-			</div>
+			<div id="title">장바구니 담기</div>
 			<div>
 				<div id="name" class="dFlex">
-					<div id="nameLeft"><%=gBean.getGoodsName() + " (" + gBean.getGoodsWeight() + ")" %></div><div id="nameRight"><%=eventRate %>% 할인 중</div>
+					<div id="nameLeft"><%=gBean.getGoodsName() + " (" + gBean.getGoodsWeight() + ")"%></div>
+					<%
+					if (eventRate > 0) {
+					%>
+					<div id="nameRight"><%=eventRate%>% 할인 중</div>
+					<%
+					}
+					%>
 				</div>
 			</div>
 
 			<div class="dFlex">
 				<div id="price" class="price">
-					<%=gBean.getGoodsPrice() %>
+					<%=gBean.getGoodsPrice()%>
 				</div>
 				<div class="cntBtn">
 					<button type="button" id="cntMinus">-</button>
@@ -46,29 +52,29 @@ int salePrice = gBean.getGoodsPrice() - gBean.getGoodsPrice() * eventRate / 100;
 					<button type="button" id="cntPlus">+</button>
 				</div>
 			</div>
-			
+
 			<div id="total" class="dFlex">
 				<div>합계</div>
 				<%
 				if (eventRate > 0) {
-					%>
-					<div id="totalPrice" class="price"><%=salePrice %></div>
-					<%
+				%>
+				<div id="totalPrice" class="price"><%=salePrice%></div>
+				<%
 				} else {
-					%>
-					<div id="totalPrice" class="price"><%=gBean.getGoodsPrice() %></div>
-					<%
+				%>
+				<div id="totalPrice" class="price"><%=gBean.getGoodsPrice()%></div>
+				<%
 				}
 				%>
 			</div>
-			
+
 			<div id="btnArea" class="dFlex">
 				<button type="button" id="cancelBtn">취소</button>
 				<button type="button" id="basketBtn">장바구니 담기</button>
 			</div>
 			<div id="hidden">
-				<input type="hidden" id="uId" name="uId" value="<%=uId%>">
-				<input type="hidden" id="basketChk" name="basketChk" value="<%=result%>">
+				<input type="hidden" id="uId" name="uId" value="<%=uId%>"> <input
+					type="hidden" id="basketChk" name="basketChk" value="<%=result%>">
 				<input type="hidden" name="goodsCode" value="<%=goodsCode%>">
 			</div>
 		</div>
