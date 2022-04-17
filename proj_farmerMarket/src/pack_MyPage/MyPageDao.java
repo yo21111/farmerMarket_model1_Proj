@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import pack_DBCP.DBConnectionMgr;
 import pack_Goods.GoodsBean;
+import pack_Member.MemberBean;
 
 public class MyPageDao {
 	private Connection objConn = null;
@@ -278,5 +279,155 @@ public class MyPageDao {
 		}
 		return list;
 	}
+	
+	// 상품 문의 읽기 (글 1개)
+	public GoodsQnABean selectQnAOne(int no) {
+		GoodsQnABean gBean = new GoodsQnABean();
+		
+		try {
+			objConn = pool.getConnection();
+			sql = "select * from goodsQnA where no = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setInt(1, no);
+			objRs = objPStmt.executeQuery();
 
+			if (objRs.next()) {
+				gBean.setNo(objRs.getInt("no"));
+				gBean.setuId(objRs.getString("uId"));
+				gBean.setGoodsCode(objRs.getString("goodsCode"));
+				gBean.setTitle_q(objRs.getString("title_q"));
+				gBean.setContetns_q(objRs.getString("contetns_q"));
+				gBean.setFileOName_q(objRs.getString("fileOName_q"));
+				gBean.setFileRName_q(objRs.getString("fileRName_q"));
+				gBean.setWriteTime_q(objRs.getString("writeTime_q"));
+				gBean.setView_cnt_q(objRs.getInt("view_cnt_q"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt, objRs);
+		}
+		return gBean;
+	}
+	
+	
+	// 상품 후기 읽기 (글 1개)
+	public GoodsCommentsBean selectCommentOne(int no) {
+		GoodsCommentsBean gBean = new GoodsCommentsBean();
+		
+		try {
+			objConn = pool.getConnection();
+			sql = "select * from goodsComments where no = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setInt(1, no);
+			objRs = objPStmt.executeQuery();
+
+			if (objRs.next()) {
+				gBean.setNo(objRs.getInt("no"));
+				gBean.setuId(objRs.getString("uId"));
+				gBean.setGoodsCode(objRs.getString("goodsCode"));
+				gBean.setTitle_c(objRs.getString("title_c"));
+				gBean.setContetns_c(objRs.getString("contetns_c"));
+				gBean.setFileOName_c(objRs.getString("fileOName_c"));
+				gBean.setFileRName_c(objRs.getString("fileRName_c"));
+				gBean.setWriteTime_c(objRs.getString("writeTime_c"));
+				gBean.setView_cnt_c(objRs.getInt("view_cnt_c"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt, objRs);
+		}
+		return gBean;
+	}
+	
+	
+	// 상품후기 삭제 메서드
+	public boolean deleteCmtOne(int no, String uId) {
+		int result = 0;
+		try {
+			objConn = pool.getConnection();
+			sql = "delete from goodsComments where uId = ? and no = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objPStmt.setInt(2, no);
+			result = objPStmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return result == 1 ? true : false;
+	}
+	
+	
+	// 상품문의 삭제 메서드
+	public boolean deleteQnaOne(int no, String uId) {
+		int result = 0;
+		try {
+			objConn = pool.getConnection();
+			sql = "delete from goodsQnA where uId = ? and no = ?";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objPStmt.setInt(2, no);
+			result = objPStmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return result == 1 ? true : false;
+	}
+	
+	
+	// 상품 후기 수정 메서드
+	public boolean updateCmtOne(String title, String content, String uId, int no) {
+		boolean flag = false;
+
+		try {
+			objConn = pool.getConnection();
+			sql = "Update goodsComments set title_c=?, contetns_c=?, writeTime_c=now() where uId=? and no=?";
+			objPStmt = objConn.prepareStatement(sql);
+
+			objPStmt.setString(1, title);
+			objPStmt.setString(2, content);
+			objPStmt.setString(3, uId);
+			objPStmt.setInt(4, no);
+			if (objPStmt.executeUpdate() == 1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+
+		return flag;
+	}
+	
+	
+	// 상품 문의 수정 메서드
+	public boolean updateQnaOne(String title, String content, String uId, int no) {
+		boolean flag = false;
+
+		try {
+			objConn = pool.getConnection();
+			sql = "Update goodsQnA set title_q=?, contetns_q=?, writeTime_q=now() where uId=? and no=?";
+			objPStmt = objConn.prepareStatement(sql);
+
+			objPStmt.setString(1, title);
+			objPStmt.setString(2, content);
+			objPStmt.setString(3, uId);
+			objPStmt.setInt(4, no);
+			if (objPStmt.executeUpdate() == 1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+
+		return flag;
+	}
 }

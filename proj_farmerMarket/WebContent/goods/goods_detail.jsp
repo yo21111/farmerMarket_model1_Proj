@@ -5,11 +5,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <jsp:useBean id="goodsDao" class="pack_Goods.GoodsDao" scope="request" />
-<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao"/>
+<jsp:useBean id="myPageDao" class="pack_MyPage.MyPageDao" />
 <%
 request.setCharacterEncoding("UTF-8");
 
-String uId = (String)session.getAttribute("uId_Session");
+String uId = (String) session.getAttribute("uId_Session");
 
 String goodsCode = (String) request.getParameter("goodsCode");
 GoodsBean gBean = goodsDao.selectGoodsOne(goodsCode);
@@ -71,7 +71,8 @@ if (category == 'M') {
 							alt="<%=gBean.getGoodsName()%>">
 					</div>
 
-					<form action="/goods/goods_basketProc.jsp" id="basketFrm" method="get">
+					<form action="/goods/goods_basketProc.jsp" id="basketFrm"
+						method="get">
 						<div id="detail_info">
 
 							<!-- ##### 가격테이블 ######-->
@@ -99,7 +100,7 @@ if (category == 'M') {
 									<%
 									int goodsPrice = gBean.getGoodsPrice();
 									int eventRate = gBean.getEventRate();
-									
+
 									int salePrice = goodsPrice - goodsPrice * eventRate / 100;
 									if (eventRate > 0) {
 									%>
@@ -146,23 +147,23 @@ if (category == 'M') {
 										</td>
 									</tr>
 									<tr>
-									<% 
-									if (eventRate > 0) {
+										<%
+										if (eventRate > 0) {
 										%>
 										<td colspan="2" id="totalPrice">총 상품금액 : <span
 											class="salePrice"></span> <input type="hidden"
 											value="<%=salePrice%>" />
-										</td>										
+										</td>
 										<%
-									} else {
+										} else {
 										%>
 										<td colspan="2" id="totalPrice">총 상품금액 : <span
 											class="goods_price price"></span> <input type="hidden"
 											value="<%=gBean.getGoodsPrice()%>" />
 										</td>
 										<%
-									}
-									%>
+										}
+										%>
 									</tr>
 									<tr>
 										<td class="goods_btnArea">
@@ -170,12 +171,11 @@ if (category == 'M') {
 												<i class="fa fa-fw fa-heart"></i>
 											</button>
 										</td>
-										<td class="goods_btnArea"><a
-											href="#" id="basketA">
-												<button id="basketBtn" type="button">장바구니 담기</button> <input type="hidden"
-												value="<%=uId%>" name="uId_Session"> <input
-												type="hidden" value="<%=result%>">
-												<input type="hidden" value="<%=wishListResult%>">
+										<td class="goods_btnArea"><a href="#" id="basketA">
+												<button id="basketBtn" type="button">장바구니 담기</button> <input
+												type="hidden" value="<%=uId%>" name="uId_Session"> <input
+												type="hidden" value="<%=result%>"> <input
+												type="hidden" value="<%=wishListResult%>">
 										</a></td>
 									</tr>
 								</tbody>
@@ -262,10 +262,7 @@ if (category == 'M') {
 											남겨주세요.
 										</p></th>
 
-									<th class="reviewHead"><select>
-											<option value="recent">최근 등록일순</option>
-											<option value="view">조회많은순</option>
-									</select></th>
+								<th class="reviewHead"></th>
 								</tr>
 								<tr>
 									<th class="thTit">번호</th>
@@ -298,7 +295,7 @@ if (category == 'M') {
 									<td><%=cBean.getTitle_c()%></td>
 									<td><%=cBean.getuId()%></td>
 									<td><%=cBean.getWriteTime_c()%></td>
-									<td><%=cBean.getView_cnt_c()%></td>
+									<td id="vCnt"><%=cBean.getView_cnt_c()%></td>
 								</tr>
 								<tr class="hiddenTr">
 									<td colspan="5" class="hiddenRivew">

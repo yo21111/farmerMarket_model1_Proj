@@ -1,3 +1,4 @@
+<%@page import="pack_Goods.GoodsBean"%>
 <%@page import="pack_MyPage.GoodsQnABean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -97,18 +98,23 @@ String uId = (String) session.getAttribute("uId_Session");
 								</tr>
 								<%
 								} else {
-									for(int i = 0; i < qList.size(); i++) {
-										GoodsQnABean gBean = qList.get(i);
+								for (int i = 0; i < qList.size(); i++) {
+									GoodsQnABean gBean = qList.get(i);
+									String goodsCode = gBean.getGoodsCode();
+									GoodsBean goods = goodsDao.selectGoodsOne(goodsCode);
+									String goodsName = goods.getGoodsName();
 								%>
-								<tr class="qnaTr">
-									<td>
-										<%=gBean.getTitle_q() %>
+								<tr class="qnaTr" id="bbsQnaTr">
+									<td>[<%=goodsName%>] <%=gBean.getTitle_q()%> <input
+										type="hidden" name="no" value="<%=gBean.getNo()%>"> <input
+										type="hidden" name="type" value="q">
+										<input type="hidden" name="write" value="n">
 									</td>
-									<td><%=gBean.getWriteTime_q() %></td>
+									<td><%=gBean.getWriteTime_q()%></td>
 									<td>답변예정</td>
 								</tr>
 								<%
-									}
+								}
 								}
 								%>
 								<!-- ///////////////////////// 반복문 끝 ///////////////////////// -->

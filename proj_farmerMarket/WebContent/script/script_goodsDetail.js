@@ -264,9 +264,15 @@ $(function() {
 	$("#review>tbody tr.hiddenRivewTitle").click(function() {
 		if ($(this).next().css("display") == "none") {
 			$(this).next().css("display", "table-row");
+			let cnt = $("tr.hiddenRivewTitle td#vCnt").text();
+			$("tr.hiddenRivewTitle td#vCnt").text(parseInt(cnt) + 1);
+			let no = $("tr.hiddenRivewTitle td:first-child").text();
+			location.href = "/goods/increaseViewCnt.jsp?no=" + no;
 		} else {
 			$(this).next().css("display", "none");
 		}
+
+
 	});
 
 
@@ -297,7 +303,7 @@ $(function() {
 			} else if (wishChk == "true") {
 				$("#basketFrm").attr("action", "/goods/insertWishProc.jsp");
 				$("#basketFrm").submit();
-			}  else if (wishChk == "false") {
+			} else if (wishChk == "false") {
 				alert("이미 찜해 놓은 상품입니다.");
 			}
 		}

@@ -375,7 +375,30 @@ public class GoodsDao {
 
 		return list;
 	}
+	
+	
+	// 상품 후기 조회수 증가 메서드
+	public boolean updateViewCnt(int no) {
+		boolean flag = false;
 
+		try {
+			conn = pool.getConnection();
+			sql = "Update goodsComments set view_cnt_c = view_cnt_c+1 where no=?";
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, no);
+			if (pstmt.executeUpdate() == 1)
+				flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(conn, pstmt);
+		}
+
+		return flag;
+	}
+	
+	
 	// 상품 문의 게시판 내용 insert 메서드
 	public boolean insertGoodsQnA(HttpServletRequest req, String uId) {
 		boolean flag = false;
@@ -508,7 +531,7 @@ public class GoodsDao {
 		try {
 			conn = pool.getConnection();
 
-			sql = "select * from goodsComments where goodsCode=? ";
+			sql = "select * from goodsComments where goodsCode=? order by no desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, goodsCode);
 
@@ -544,7 +567,7 @@ public class GoodsDao {
 		try {
 			conn = pool.getConnection();
 
-			sql = "select * from goodsComments where uId=? ";
+			sql = "select * from goodsComments where uId=? order by no desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, uId);
 
@@ -580,7 +603,7 @@ public class GoodsDao {
 		try {
 			conn = pool.getConnection();
 
-			sql = "select * from goodsQnA where goodsCode=? ";
+			sql = "select * from goodsQnA where goodsCode=? order by no desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, goodsCode);
 
@@ -616,7 +639,7 @@ public class GoodsDao {
 		try {
 			conn = pool.getConnection();
 
-			sql = "select * from goodsQnA where uId=? ";
+			sql = "select * from goodsQnA where uId=? order by no desc";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, uId);
 

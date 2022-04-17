@@ -1,3 +1,4 @@
+<%@page import="pack_Goods.GoodsBean"%>
 <%@page import="pack_MyPage.GoodsCommentsBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -85,7 +86,7 @@ String uId = (String) session.getAttribute("uId_Session");
 															<!-- ///////////////////////// 반복문 시작 ///////////////////////// -->
 								<%
 								List<GoodsCommentsBean> cList = goodsDao.selectMyGoodsCmtList(uId);
-
+							
 								if (cList.size() == 0) {
 								%>
 								<tr class="qnaTr">
@@ -95,10 +96,16 @@ String uId = (String) session.getAttribute("uId_Session");
 								} else {
 									for(int i = 0; i < cList.size(); i++) {
 										GoodsCommentsBean gBean = cList.get(i);
+										String goodsCode = gBean.getGoodsCode();
+										GoodsBean goods = goodsDao.selectGoodsOne(goodsCode);
+										String goodsName = goods.getGoodsName();
 								%>
-								<tr class="qnaTr">
+								<tr class="qnaTr" id="bbsCmtTr">
 									<td>
-										<%=gBean.getTitle_c() %>
+										<input type="hidden" name="no" value="<%=gBean.getNo()%>">
+										<input type="hidden" name="type" value="c">										
+										<input type="hidden" name="write" value="n">										
+										[<%=goodsName %>] <%=gBean.getTitle_c() %>
 									</td>
 									<td><%=gBean.getWriteTime_c() %></td>
 								</tr>
