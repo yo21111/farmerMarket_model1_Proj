@@ -324,6 +324,10 @@ $(function() {
 
 	// 선택삭제 버튼 선택시 실행
 	$(".selClickBtn").click(function() {
+		let chk = confirm("선택하신 물품을 삭제하시겠습니까?");
+		if(!chk) {
+			return;
+		}
 
 		chkList();
 

@@ -288,16 +288,20 @@ $(function() {
 		let basketChk = $(this).next().next().val();
 		//alert(basketChk);
 
-		if (uSession == "null") {
-			alert("로그인이 필요한 서비스입니다.");
-			let goodsCode = $("td#hiddenTd input").val();
-			let to = "/goods/goods_detail.jsp";
-			let url = "/member/login.jsp?to=" + to + "&with=" + goodsCode;
-			location.href = url;
-		} else if (basketChk == "true") {
-			$("#basketFrm").submit();
-		} else {
-			alert("이미 장바구니에담긴 상품입니다.");
+		let chk = confirm("장바구니에 물건을 담으시겠습니까?");
+
+		if (chk) {
+			if (uSession == "null") {
+				alert("로그인이 필요한 서비스입니다.");
+				let goodsCode = $("td#hiddenTd input").val();
+				let to = "/goods/goods_detail.jsp";
+				let url = "/member/login.jsp?to=" + to + "&with=" + goodsCode;
+				location.href = url;
+			} else if (basketChk == "true") {
+				$("#basketFrm").submit();
+			} else {
+				alert("이미 장바구니에담긴 상품입니다.");
+			}
 		}
 	});
 

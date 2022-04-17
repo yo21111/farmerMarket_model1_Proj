@@ -20,6 +20,9 @@ MemberBean uDeli = deliInfo.selectMemberOne(uId_Session);
 String userDel = uDeli.getuAddr();
 List<BasketBean> basketList = gBean.basketInfo(uId_Session);
 // uId에 해당하는 데이터 반환
+if(basketList.size()==0){
+	response.sendRedirect("/goods/goods_basketNull.jsp");
+}
 %>
 
 
@@ -57,7 +60,7 @@ int deliPrice = 3000;
 		<%@ include file="/ind/headerTmp.jsp"%>
 		<!-- 헤더템플릿 끝 -->
 
-		<form action="/index.jsp" id=basketFrm>
+		<form action="/goods/goods_orderProc.jsp" id=basketFrm>
 			<main id="main">
 
 				<h1>장바구니</h1>
