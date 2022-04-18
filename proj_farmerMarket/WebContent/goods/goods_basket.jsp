@@ -120,10 +120,9 @@ int deliPrice = 3000;
 								<tbody>
 									<tr class="basketChk">
 										<td><input type="checkbox" name="goodsCode[]"
-											value="<%=goodsCode%>"><input name="goodsCode" type="hidden"
 											value="<%=goodsCode%>"></td>
 										<td class="gImg"><a href="#"><img
-												src="/images<%=goodsImg%>" alt="<%=goodsName%>"></a> <%-- <input type="hidden" value="<%=goodsCode%>" name="goodsCode"> --%>
+												src="/images<%=goodsImg%>" alt="<%=goodsName%>"></a> <input type="hidden" value="<%=goodsCode%>" name="goodsCode">
 											<input type="hidden" value="<%=uId_Session%>" name="uId">
 										</td>
 										<!-- 이미지 클릭시 상품상세 페이지 이동 -->

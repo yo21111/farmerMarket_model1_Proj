@@ -90,7 +90,7 @@ String uId = (String) session.getAttribute("uId_Session");
 								if (cList.size() == 0) {
 								%>
 								<tr class="qnaTr">
-									<td rowspan="3">작성하신 상품 문의가 없습니다.</td>
+									<td rowspan="3">작성하신 상품 후기가 없습니다.</td>
 								</tr>
 								<%
 								} else {

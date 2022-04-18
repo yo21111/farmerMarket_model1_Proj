@@ -669,20 +669,21 @@ public class GoodsDao {
 	}
 
 	// 주문완료시 장바구니 목록 삭제
-	public void orderCom(String uId) {
+	public void orderCom(String uId, String goodsCode) {
 		String sql = null;
 
 		try {
 			conn = pool.getConnection();
-			sql = "delete from basket where uId=?";
+			sql = "delete from basket where uId=? and goodsCode = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, uId);
+			pstmt.setString(2, goodsCode);
 			pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			pool.freeConnection(conn, pstmt, rs);
+			pool.freeConnection(conn, pstmt);
 		}
 	}
 }
