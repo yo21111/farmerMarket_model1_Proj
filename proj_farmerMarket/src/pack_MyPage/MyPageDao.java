@@ -26,19 +26,44 @@ public class MyPageDao {
 		}
 	}
 
+	// 주문하기 버튼 클릭시 주문내역에 담기
+	public boolean insertOrderList(String uId, String goodsCode, int goodsCnt, int goodsPrice, int eventRate) {
+		boolean flag = false;
+		try {
+			objConn = pool.getConnection();
+			sql = "insert into orderList (uId, goodsCode, goodsCnt, goodsPrice, eventRate, buyTime) values(?,?,?,?,?,now())";
+			objPStmt = objConn.prepareStatement(sql);
+			objPStmt.setString(1, uId);
+			objPStmt.setString(2, goodsCode);
+			objPStmt.setInt(3, goodsCnt);
+			objPStmt.setInt(4, goodsPrice);
+			objPStmt.setInt(5, eventRate);
+
+			if (objPStmt.executeUpdate() == 1) {
+				flag = true;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(objConn, objPStmt);
+		}
+		return flag;
+	}
+
 	// 주문내역 메서드
-	// 주문내역 기간별 조회 기능 추가해야됨
 	public List<OrderListBean> selectOrderList(String uId, String where) {
 		List<OrderListBean> list = new ArrayList<>();
 		try {
 			objConn = pool.getConnection();
 			sql = "select buyTime, goodsCode, goodsCnt from orderList where uId =?";
-			
-			if(!where.equals("") || where != null) {
-				String sql2 =" and buyTime like '"+where+"%'";
+
+			if (!where.equals("") || where != null) {
+				String sql2 = " and buyTime like '" + where + "%'";
 				sql += sql2;
 			}
 			
+			sql += "order by buyTime DESC";
 			
 			objPStmt = objConn.prepareStatement(sql);
 			objPStmt.setString(1, uId);
@@ -87,7 +112,7 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	
+
 	// 상품찜하기 - insert
 	public boolean insertWishList(String uId, String goodsCode) {
 		boolean flag = false;
@@ -109,7 +134,7 @@ public class MyPageDao {
 		}
 		return flag;
 	}
-	
+
 	// 찜한목록 중복확인
 	public boolean checkWish(String goodsCode) {
 		int chkRes = 0;
@@ -138,8 +163,7 @@ public class MyPageDao {
 		// 0이 반환되면 중복 없음
 		return chkRes == 0 ? true : false;
 	}
-	
-	
+
 	// 찜한 목록 삭제 메서드
 	public boolean deleteWishList(String goodsCode) {
 		int rs = 0;
@@ -188,7 +212,7 @@ public class MyPageDao {
 			objConn = pool.getConnection();
 			sql = "delete from Addr where uid=? and no = ?";
 			objPStmt = objConn.prepareStatement(sql);
-			
+
 			int num = Integer.parseInt(no);
 			objPStmt.setString(1, uId);
 			objPStmt.setInt(2, num);
@@ -211,7 +235,7 @@ public class MyPageDao {
 			objPStmt = objConn.prepareStatement(sql);
 			objPStmt.setString(1, uId);
 			objRs = objPStmt.executeQuery();
-			
+
 			while (objRs.next()) {
 				AddrBean aBean = new AddrBean();
 				aBean.setNo(objRs.getInt("no"));
@@ -279,11 +303,11 @@ public class MyPageDao {
 		}
 		return list;
 	}
-	
+
 	// 상품 문의 읽기 (글 1개)
 	public GoodsQnABean selectQnAOne(int no) {
 		GoodsQnABean gBean = new GoodsQnABean();
-		
+
 		try {
 			objConn = pool.getConnection();
 			sql = "select * from goodsQnA where no = ?";
@@ -309,12 +333,11 @@ public class MyPageDao {
 		}
 		return gBean;
 	}
-	
-	
+
 	// 상품 후기 읽기 (글 1개)
 	public GoodsCommentsBean selectCommentOne(int no) {
 		GoodsCommentsBean gBean = new GoodsCommentsBean();
-		
+
 		try {
 			objConn = pool.getConnection();
 			sql = "select * from goodsComments where no = ?";
@@ -340,8 +363,7 @@ public class MyPageDao {
 		}
 		return gBean;
 	}
-	
-	
+
 	// 상품후기 삭제 메서드
 	public boolean deleteCmtOne(int no, String uId) {
 		int result = 0;
@@ -360,8 +382,7 @@ public class MyPageDao {
 		}
 		return result == 1 ? true : false;
 	}
-	
-	
+
 	// 상품문의 삭제 메서드
 	public boolean deleteQnaOne(int no, String uId) {
 		int result = 0;
@@ -380,8 +401,7 @@ public class MyPageDao {
 		}
 		return result == 1 ? true : false;
 	}
-	
-	
+
 	// 상품 후기 수정 메서드
 	public boolean updateCmtOne(String title, String content, String uId, int no) {
 		boolean flag = false;
@@ -405,8 +425,7 @@ public class MyPageDao {
 
 		return flag;
 	}
-	
-	
+
 	// 상품 문의 수정 메서드
 	public boolean updateQnaOne(String title, String content, String uId, int no) {
 		boolean flag = false;

@@ -120,6 +120,7 @@ int deliPrice = 3000;
 								<tbody>
 									<tr class="basketChk">
 										<td><input type="checkbox" name="goodsCode[]"
+											value="<%=goodsCode%>"><input name="goodsCode" type="hidden"
 											value="<%=goodsCode%>"></td>
 										<td class="gImg"><a href="#"><img
 												src="/images<%=goodsImg%>" alt="<%=goodsName%>"></a> <%-- <input type="hidden" value="<%=goodsCode%>" name="goodsCode"> --%>
@@ -131,7 +132,7 @@ int deliPrice = 3000;
 										<td>
 											<div class="cntBtn">
 												<button type="button" class="cntM">-</button>
-												<input type="text" value="<%=goodsCnt%>" readonly>
+												<input type="text" name="goodsCnt" value="<%=goodsCnt%>" readonly>
 												<button type="button" class="cntP">+</button>
 											</div>
 										</td>
