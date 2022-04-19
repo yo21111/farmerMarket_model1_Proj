@@ -23,6 +23,8 @@ $(function() {
 
 			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
 			$("span.goods_price").text((price * cnt).toLocaleString() + "원");
+			let salePrice = parseInt($("td.salePrice").text().replace(/,/g, ''));
+			$("span.salePrice").text((salePrice * cnt).toLocaleString() + "원");
 		}
 	});
 
@@ -33,6 +35,8 @@ $(function() {
 
 			let price = parseInt($("td.goods_price").text().replace(/,/g, ''));
 			$("span.goods_price").text((price * cnt).toLocaleString() + "원");
+			let salePrice = parseInt($("td.salePrice").text().replace(/,/g, ''));
+			$("span.salePrice").text((salePrice * cnt).toLocaleString() + "원");
 		}
 	});
 	////////////////////////////////////////////////////////////////////////////
