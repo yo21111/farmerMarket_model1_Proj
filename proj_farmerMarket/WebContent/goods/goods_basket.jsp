@@ -73,8 +73,8 @@ int deliPrice = 3000;
 						<table>
 							<tbody>
 								<tr>
-									<td><input id="chkAll1" type="checkbox"></td>
-									<td><button type="button" class="allClickBtn">
+									<td><input id="chkAll1" type="checkbox" checked="checked" name="allChk"></td>
+									<td><button type="button" class="allClickBtn" name="allBtn">
 											<span>전체선택</span>
 										</button></td>
 									<td><span>|</span></td>
@@ -116,13 +116,15 @@ int deliPrice = 3000;
 									eventPrice += goodsPrice * goodsCnt * (eventRate / 100);
 								}
 							%>
+							
 							<table class="myBasket">
 								<tbody>
 									<tr class="basketChk">
 										<td><input type="checkbox" name="goodsCode[]"
-											value="<%=goodsCode%>"></td>
+											value="<%=goodsCode%>" checked="checked"></td>
 										<td class="gImg"><a href="#"><img
-												src="/images<%=goodsImg%>" alt="<%=goodsName%>"></a> <input type="hidden" value="<%=goodsCode%>" name="goodsCode">
+												src="/images<%=goodsImg%>" alt="<%=goodsName%>"></a> 
+											<input type="hidden" value="<%=goodsCode%>" name="goodsCode">
 											<input type="hidden" value="<%=uId_Session%>" name="uId">
 										</td>
 										<!-- 이미지 클릭시 상품상세 페이지 이동 -->
@@ -131,10 +133,24 @@ int deliPrice = 3000;
 										<td>
 											<div class="cntBtn">
 												<button type="button" class="cntM">-</button>
-												<input type="text" name="goodsCnt" value="<%=goodsCnt%>" readonly>
+												<input type="text" value="<%=goodsCnt%>" readonly>
 												<button type="button" class="cntP">+</button>
 											</div>
+											
+											
+										<!-- 상품 계산용 -->
+											<input type="hidden" value="<%=goodsPrice%>">
+											<input type="hidden" value="<%=eventRate%>">
+											<input type="hidden" value="<%=goodsCnt %>" >
+										<!-- 상품계산용 -->
+											
+											
 										</td>
+										
+
+										
+										
+										
 										<%
 										int calc1 = goodsPrice * goodsCnt;
 										int calc2 = (int) (calc1 * eventRate / 100);
@@ -173,8 +189,8 @@ int deliPrice = 3000;
 								<table>
 									<tbody>
 										<tr>
-											<td><input id="chkAll2" type="checkbox"></td>
-											<td><button type="button" class="allClickBtn">전체선택</button></td>
+											<td><input id="chkAll2" type="checkbox" checked="checked" name="allChk"></td>
+											<td><button type="button" class="allClickBtn" name="allBtn">전체선택</button></td>
 											<td><span>|</span></td>
 											<td><button type="button" class="selClickBtn">선택삭제</button></td>
 										</tr>
@@ -219,7 +235,7 @@ int deliPrice = 3000;
 										<tr>
 											<td>결제예정금액</td>
 											<%
-											int totalPrice = toGoodsPrice - eventPrice + 3000;
+											int totalPrice = toGoodsPrice - eventPrice + deliPrice;
 											%>
 											<td id="lastPrice" class="price"><%=totalPrice%></td>
 										</tr>
