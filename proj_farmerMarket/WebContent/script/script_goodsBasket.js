@@ -27,6 +27,7 @@ $(function() {
 		if (parseInt($(this).next().val()) > 0) {
 			let cnt = parseInt($(this).next().val()) - 1;
 			$(this).next().val(cnt);
+			$(this).parent().next().next().next().val(cnt);
 		} else {
 			let cnt = 0;
 			$(this).next().val(cnt);
@@ -55,7 +56,7 @@ $(function() {
 			} else {
 				Price = parseInt($(this).parent().parent().next().children().next().val());
 				tPrice = Cnt * Price;
-				//tPrice = tPrice.toLocaleString() + " 원";
+				tPrice = tPrice.toLocaleString() + " 원";
 				$(this).parent().parent().next().children().first().text(tPrice);
 			}
 	
