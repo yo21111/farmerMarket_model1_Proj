@@ -133,7 +133,7 @@ int deliPrice = 3000;
 										<td>
 											<div class="cntBtn">
 												<button type="button" class="cntM">-</button>
-												<input type="text" value="<%=goodsCnt%>" readonly>
+												<input type="text" name="goodsCnt" value="<%=goodsCnt%>" readonly>
 												<button type="button" class="cntP">+</button>
 											</div>
 											
